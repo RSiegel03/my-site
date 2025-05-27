@@ -1,0 +1,438 @@
+baseURL: "https://rsiegel.netlify.app"
+languageCode: "en-us"
+title: "Ryan Siegel Hugo Profile"
+theme: hugo-profile
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+    - "JSON"
+  page:
+    - "HTML"
+    - "RSS"
+
+enableRobotsTXT: true
+
+#services:
+  #googleAnalytics:
+    #id: G-MEASUREMENT_ID
+  #disqus:
+    #shortname: your-disqus-shortname
+
+pagination:
+  pagerSize: 3
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+# Menus:
+#   main:
+    # - identifier: blog
+    #   name: Blog
+    #   title: Blog posts
+    #   url: /blogs
+    #   weight: 1
+    # - identifier: gallery
+    #   name: Gallery
+    #   title: Blog posts
+    #   url: /gallery
+    #   weight: 2
+    #Dropdown menu
+    # - identifier: dropdown
+    #   title: Example dropdown menu
+    #   name: Dropdown
+    #   weight: 3
+    # - identifier: dropdown1
+    #   title: example dropdown 1
+    #   name: example 1
+    #   url: /#
+    #   parent: dropdown
+    #   weight: 1
+    # - identifier: dropdown2
+    #   title: example dropdown 2
+    #   name: example 2
+    #   url: /#
+    #   parent: dropdown
+    #   weight: 2
+
+params:
+  title: "Ryan Siegel"
+  description: "I am a Senior Biomedical Engineering Student at UVM"
+  # staticPath: ""  # The path to serve the static files from
+  favicon: "/fav.png"
+
+  # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
+  # serving both, only the css, or only the js files through the CDN. Any other value will make so that CDN is not used.
+  # Note the lack of "" in true, it should be of boolean type.
+  useBootstrapCDN: false
+
+  # If you want to load dynamically responsive images from Cloudinary
+  # This requires your images to be uploaded + hosted on Cloudinary
+  # Uncomment and change YOUR_CLOUD_NAME to the Cloud Name in your Cloudinary console
+  # cloudinary_cloud_name: "YOUR_CLOUD_NAME"
+
+  # Whether to add mathjax support on all pages. Alternatively, you can opt-in per page by adding `mathjax: true` in the frontmatter.
+  mathjax: false
+
+  # Whether the fade animations on the home page will be enabled
+  animate: true
+
+  theme:
+    # disableThemeToggle: true
+    defaultTheme: "light" # dark
+
+  font:
+    fontSize: 1rem # default: 1rem
+    fontWeight: 400 # default: 400
+    lineHeight: 1.5 # default: 1.5
+    textAlign: left # default: left
+
+  # color preference
+  # When using hex codes for colors, quotations must be used along with the # sign
+  # color:
+  #   textColor: "#343a40"
+  #   secondaryTextColor: "#6c757d"
+  #   textLinkColor: "#007bff"
+  #   backgroundColor: "#eaedf0"
+  #   secondaryBackgroundColor: "#64ffda1a"
+  #   primaryColor: "#007bff"
+  #   secondaryColor: "#f8f9fa"
+
+  #   darkmode:
+  #     textColor: "#e4e6eb"
+  #     secondaryTextColor: "#b0b3b8"
+  #     textLinkColor: "#ffffff"
+  #     backgroundColor: "#18191a"
+  #     secondaryBackgroundColor: "#212529"
+  #     primaryColor: "#ffffff"
+  #     secondaryColor: "#212529"
+
+  # If you want to customize the menu, you can change it here
+  navbar:
+    align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
+    # brandLogo: "/logo.png" # Logo for the brand | default is the favicon variable
+    # showBrandLogo: false # Show brand logo in nav bar | default is true
+    brandName: "Ryan Siegel" # Brand name for the brand | default is the title variable
+    disableSearch: false
+    searchPlaceholder: "Search"
+    stickyNavBar:
+      enable : true
+      showOnScrollUp : true
+    enableSeparator: false
+
+    menus:
+      disableAbout: false
+      disableExperience: false
+      disableEducation: false
+      disableProjects: false
+      disableAchievements: false
+      disableContact: false
+
+  # Hero
+  hero:
+    enable: true
+    intro: "Hi, my name is"
+    title: "Ryan Siegel."
+    subtitle: "I am a Senior Biomedical Engineering Student at UVM"
+    content: "I am passionate about exploration, technology, and sharing my knowledge for the world."
+    image: /images/rsiegel.jpg
+    bottomImage:
+      enable: true
+    # roundImage: true # Make hero image circular | default false
+    button:
+      enable: true
+      name: "Resumé | Not Yet Available"
+      url: "#about"
+      download: true
+      newPage: true
+
+    socialLinks:
+      fontAwesomeIcons:
+        - icon: fab fa-github
+          url: https://github.com/RSiegel03
+        - icon: fab fa-linkedin
+          url: https://example.com
+      customIcons:
+        - icon: /images/favicon.ico
+          url: "https://example.com"
+
+  # About
+  about:
+    enable: true
+    title: "About Me"
+    image: "/images/me.png"
+    content: |-
+      I am .........................................
+
+
+    techskills:
+      enable: true
+      title: "Here are a few technologies I've been working with recently:"
+      items:
+        - "Python"
+        - "Machine Learning"
+        - "Arduino"
+        - "Raspberry Pi"
+        - "3D Printing"
+    socialskills:
+      enable: true
+      title: "My Interpersonal Skills:"
+      items:
+        - "Leadership"
+        - "Problem Solving"
+        - "Teamwork"
+        - "Communication"
+        
+
+    
+    
+
+  # Experience
+  experience:
+    enable: true
+    # title: "Custom Name"
+    items:
+      - job: "Teaching Assistant"
+        company: "University of Vermont"
+        companyUrl: "https://www.uvm.edu/cems/ebe"
+        date: "Jan 2024 - Present"
+        info:
+          enable: false
+        content: "I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. I am currently working on a project that will be used to help people find the best way to get around the city."
+
+      - job: "Undergraduate Research Assistant"
+        company: "Microbiome Metabolic Modeling Lab"
+        date: "Aug 2024 - Present"
+        featuredLink:
+          enable: true
+          url: "https://example.com"
+          name: "Our Website | Not Yet Available"
+        info:
+          enable: true
+          content: I worked in this position for pay and for educational credit.
+        content: |
+          I am currently working on a computational model for butyrate prediction, which incorporates convex optimization and machine learning. 
+
+          - Prediction of butyrate production from microbial abundance data.
+          - Designed research lab website
+
+      - job: "Lab Manager"
+        company: "Center for Biomedical Innovation"
+        companyUrl: "https://www.uvm.edu/cems/center-biomedical-innovation"
+        date: "Jan 2025 - Present"
+        info:
+          enable: false
+        content: |
+          I helped facilitate lab resources, organization, and communication. I have also consulted on some BME Capstone projects, based in the lab. I aided in training other students and faculty on Soldering and 3D printing. 
+
+      - job: "Undergraduate Research Assistant"
+        company: "Glass Brain Lab"
+        companyUrl: "https://www.uvm.edu/cems/center-biomedical-innovation"
+        date: "May 2025 - Present"
+        info:
+          enable: false        
+        content: |
+          I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. I am currently working on a project that will be used to help people find the best way to get around the city.
+
+
+      - job: "Inclusion Aide & Support Staff"
+        company: "Special Recreation Association of Central Lake County"
+        companyUrl: "https://sraclc.org/"
+        date: "May 2024 - Aug 2024"
+        featuredLink:
+          enable: true
+          url: "https://www.facebook.com/sraclc.org/posts/pfbid0SkgtXEA4UFCVzCEFurMT22JsPtCh7mie2h4GzQ7eRtpe3tY3RJh7NZQCvyHbe9H9l"
+          name: "Friendly Face Friday Shoutout"
+        content: |
+          I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. I am currently working on a project that will be used to help people find the best way to get around the city.
+
+
+      - job: "Assisted Living Staff"
+        company: "Evolve Senior Living"
+        companyUrl: "https://evolvesenior.com/communities/lake-zurich/"
+        date: "March 2021 - Jan 2025"
+        info:
+          enable: true
+          content: I worked at this location under 3 different companies and administrative teams.
+        content: |
+          Employee of the Month July 2021 & December 2021 for my dedication, organizational skills, and ability to work with a variety of people. I have also been recognized for my ability to work with patients with dementia and other cognitive disorders.
+          
+          Departments
+          - Culinary
+          - Reception
+          - Maintenance
+
+          Tasks
+          - Train new employees
+          - Facilate communication between departments
+          - Organize and maintain appropriate workspaces
+          - Assist with patient care and communication
+
+
+  # Education
+  education:
+    enable: true
+    # title: "Custom Name"
+    index: false
+    items:
+      - title: "Master of Science in Biomedical Engineering"
+        school:
+          name: "University of Vermont"
+          url: "https://www.uvm.edu/"
+        date: "Jan 2024 - Dec 2026"
+        GPA: "3.73 out of 4.0"
+        content: |-
+          Currently still enrolled in this program. 
+
+          I am focused on the following topics in my thesis
+          - Machine Learning
+          - Microbial Interaction
+          - Computational Modeling
+          - Optimization
+          
+      - title: "Bachelor of Science in Biomedical Engineering"
+        school:
+          name: "University of Vermont"
+          url: "https://www.uvm.edu/"
+        date: "Aug 2022 - Dec 2025"
+        GPA: "3.66 out of 4.0"
+        content: |-
+          Currently still enrolled in this program. 
+
+          Minor in Electrical Engineering & Statistics.
+
+          Extracurricular Activities
+          - Biomedical Engineering Society Executive Board Secretary
+          - Research Assistant in Microbiome Metabolic Modeling Lab
+
+        featuredLink:
+          enable: true
+          name: "My academic record | Not Yet Available"
+          url: "https://example.com"
+
+      - title: "High School"
+        school:
+          name: "Lake Zurich High School"
+          url: "https://lzhs.lz95.org/"
+        GPA: "4.2 out of 5.0"
+        featuredLink:
+          enable: true
+          name: "My academic record | Not Yet Available"
+          url: "https://example.com"
+        content: |- 
+          Completed several AP, Dual Credit, & Honors classes. 
+          Seal of Biliteracy in Spanish
+
+          Completed full Engineering Course Pathway. 
+          Extracurricular Activities
+            - Robotics Club
+            - Spanish Club
+            - Young Hearts 4 Life ([YH4L)](https://www.yh4l.org/)) Junior Board 
+            
+        
+  # Achievements
+  achievements:
+    enable: true
+    # title: "Custom Name"
+    items:
+      - title: Google kickstart runner
+        content: I solved all problems with optimal solution.
+        url: https://example.com
+        image: /images/achievement.jpg
+      - title: Facebook Hackathon Winner
+        content: Developed a product using Artificial Intelligence.
+        image: /images/achievement.jpg
+      - title: Hugo Profile
+        content: Developed a theme and getting 1K+ downloads per month.
+        url: "https://github.com/gurusabarish/hugo-profile"
+        image: /images/achievement.jpg
+      - title: Microsoft Imagine Runner
+        content: We are developed a product which can help others.
+      - title: Google Summer of Code
+        content: Contributed to a open source project.
+        url: https://example.com
+
+  # projects
+  projects:
+    enable: true
+    # title: "Custom Name"
+    items:
+      - title: Hugo Profile
+        content: A highly customizable and mobile first Hugo template for personal portfolio and blog.
+        image: /images/projects/profile.png
+        featured:
+          name: Demo
+          link: https://hugo-profile.netlify.app
+        badges:
+          - "Hugo"
+          - "Bootstrap"
+          - "Javascript"
+        links:
+          - icon: fa fa-envelope
+            url: mailto:?subject=Hugo%20Profile%20Template&body=Check%20it%20out:%20https%3a%2f%2fhugo-profile.netlify.app%2fblog%2fmarkdown-syntax%2f
+          - icon: fab fa-github
+            url: https://github.com/gurusabarish/hugo-profile
+          - icon: fab fa-twitter
+            url: https://twitter.com/intent/tweet?text=Check+it+out:&url=https%3A%2F%2Fgithub.com%2Fgurusabarish%2Fhugo-profile
+
+
+  
+
+  #Contact
+  contact:
+    enable: true
+    # title: "Custom Name"
+    #content: My inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
+    #btnName: Mail me
+    #btnLink: mailto:gurusabarisha@gmail.com
+    formspree:
+      enable: true # `contact.email` value will be ignored
+      formId: xgvkjyjr # Take it from your form's endpoint, like 'https://formspree.io/f/xgvkjyjr'
+      emailCaption: "Enter your email address"
+      messageCaption: "Enter your message here"
+      messageRows: 3
+
+  footer:
+    recentPosts:
+      path: "blogs"
+      count: 3
+      title: Recent Posts
+      enable: true
+      disableFeaturedImage: false
+    socialNetworks:
+      github: https://github.com/RSiegel03
+      linkedin: https://linkedin.com
+
+
+  # List pages like blogs and posts
+  listPages:
+    disableFeaturedImage: false
+
+  # Single pages like blog and post
+  singlePages:
+    socialShare: true
+    readTime:
+      enable: true
+      content: "min read"
+    scrollprogress:
+      enable: true
+    tags:
+      openInNewTab: true
+
+  # For translations
+  terms:
+    read: "Read"
+    toc: "Table Of Contents"
+    pageNotFound: "Page not found"
+    emailText: "Check out this site"
+
+  datesFormat:
+    article: "Jan 2, 2006"
+    articleList: "Jan 2, 2006"
+    articleRecent: "Jan 2, 2006"
+
+  #customScripts: -| # You can add custom scripts which will be added before </body> tag
+  #  <script type="text/javascript"><!-- any script here --></script>
