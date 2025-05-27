@@ -62,7 +62,7 @@ params:
   title: "Ryan Siegel"
   description: "I am a Senior Biomedical Engineering Student at UVM"
   # staticPath: ""  # The path to serve the static files from
-  favicon: "/fav.png"
+  favicon: "/fav1.png"
 
   # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
   # serving both, only the css, or only the js files through the CDN. Any other value will make so that CDN is not used.
@@ -92,23 +92,23 @@ params:
 
   # color preference
   # When using hex codes for colors, quotations must be used along with the # sign
-  # color:
-  #   textColor: "#343a40"
-  #   secondaryTextColor: "#6c757d"
-  #   textLinkColor: "#007bff"
-  #   backgroundColor: "#eaedf0"
-  #   secondaryBackgroundColor: "#64ffda1a"
-  #   primaryColor: "#007bff"
-  #   secondaryColor: "#f8f9fa"
+  color:
+     textColor: "#343a40"
+     secondaryTextColor: "#6c757d"
+     textLinkColor: "#00b35c"
+     backgroundColor: "#eaedf0"
+     secondaryBackgroundColor: "#64ffda1a"
+     primaryColor: "#008042"
+     secondaryColor: "#f8f9fa"
 
-  #   darkmode:
-  #     textColor: "#e4e6eb"
-  #     secondaryTextColor: "#b0b3b8"
-  #     textLinkColor: "#ffffff"
-  #     backgroundColor: "#18191a"
-  #     secondaryBackgroundColor: "#212529"
-  #     primaryColor: "#ffffff"
-  #     secondaryColor: "#212529"
+     darkmode:
+       textColor: "#e4e6eb"
+       secondaryTextColor: "#eaedf0"
+       textLinkColor: "#ffffff"
+       backgroundColor: "#18191a"
+       secondaryBackgroundColor: "#212529"
+       primaryColor: "#ffffff"
+       secondaryColor: "#2d372d"
 
   # If you want to customize the menu, you can change it here
   navbar:
@@ -116,7 +116,7 @@ params:
     # brandLogo: "/logo.png" # Logo for the brand | default is the favicon variable
     # showBrandLogo: false # Show brand logo in nav bar | default is true
     brandName: "Ryan Siegel" # Brand name for the brand | default is the title variable
-    disableSearch: false
+    disableSearch: true
     searchPlaceholder: "Search"
     stickyNavBar:
       enable : true
@@ -155,18 +155,19 @@ params:
           url: https://github.com/RSiegel03
         - icon: fab fa-linkedin
           url: https://example.com
-      customIcons:
-        - icon: /images/favicon.ico
-          url: "https://example.com"
+      #customIcons:
+      #  - icon: /images/favicon.ico
+      #    url: "https://example.com"
 
   # About
   about:
     enable: true
     title: "About Me"
-    image: "/images/me.png"
+    image: "images/ferriswheel.png"
     content: |-
-      I am .........................................
+      I enjoy so much about the world around me, and I always strive to learn more, and share it with others. I am a Senior Biomedical Engineering Student at the University of Vermont, also enrolled in the Accelerated Masters Program for Biomedical Engineering.
 
+      I am passionate about exploring new technologies (and places), solving problems, and helping others. I especially enjoy learning new things and being able to share my knowledge with others. I love interacting with people, and I am always looking for new ways to connect with others and learn from them.
 
     techskills:
       enable: true
@@ -177,8 +178,10 @@ params:
         - "Arduino"
         - "Raspberry Pi"
         - "3D Printing"
+        - "Soldering"
+
     socialskills:
-      enable: true
+      enable: false
       title: "My Interpersonal Skills:"
       items:
         - "Leadership"
@@ -201,7 +204,8 @@ params:
         date: "Jan 2024 - Present"
         info:
           enable: false
-        content: "I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. I am currently working on a project that will be used to help people find the best way to get around the city."
+        content: |-
+          dlkf
 
       - job: "Undergraduate Research Assistant"
         company: "Microbiome Metabolic Modeling Lab"
@@ -213,12 +217,15 @@ params:
         info:
           enable: true
           content: I worked in this position for pay and for educational credit.
-        content: |
+        content: |-
           I am currently working on a computational model for butyrate prediction, which incorporates convex optimization and machine learning. 
 
-          - Prediction of butyrate production from microbial abundance data.
-          - Designed research lab website
-
+          Skills I have learned in this position:
+          - Metabolic Modeling ([COBRAPy](https://opencobra.github.io/cobrapy/))
+          - Optimization ([CVXPY](https://www.cvxpy.org/))
+          - Machine Learning
+          - Scientific Communication
+          
       - job: "Lab Manager"
         company: "Center for Biomedical Innovation"
         companyUrl: "https://www.uvm.edu/cems/center-biomedical-innovation"
