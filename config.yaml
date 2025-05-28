@@ -154,7 +154,7 @@ params:
         - icon: fab fa-github
           url: https://github.com/RSiegel03
         - icon: fab fa-linkedin
-          url: https://example.com
+          url: www.linkedin.com/in/ryan-siegel-24b533210
       #customIcons:
       #  - icon: /images/favicon.ico
       #    url: "https://example.com"
@@ -171,7 +171,7 @@ params:
 
     techskills:
       enable: true
-      title: "Here are a few technologies I've been working with recently:"
+      title: "Here are a few of my technical skills:"
       items:
         - "Python"
         - "Machine Learning"
@@ -189,10 +189,6 @@ params:
         - "Teamwork"
         - "Communication"
         
-
-    
-    
-
   # Experience
   experience:
     enable: true
@@ -201,15 +197,28 @@ params:
       - job: "Teaching Assistant"
         company: "University of Vermont"
         companyUrl: "https://www.uvm.edu/cems/ebe"
-        date: "Jan 2024 - Present"
+        date: "January 2024 - Present"
         info:
           enable: false
         content: |-
-          dlkf
+          During the school year, I work as a Teaching Assistant for various courses. I help students with assignments, projects, and answer questions. I also help grade assignments and projects, and provide feedback to students.
+
+          Skills I have developed in this position:
+          - Communication
+          - Teamwork
+          - Leadership
+          
+          Courses I have taught:
+          - BME Design 0 (BME 1600) - Spring 2024 & 2025
+          - Biomechanics & Sensing (BME 2000) - Fall 2024
+          - BME Design 1 (BME 2600) - Fall 2024
+          - Machine Learning for Engineers (CSYS 5990) - Fall 2025
+          - Circuits 1 (EE 2125) - Fall 2025
+          - Systems & Signals (BME 3000) - Fall 2025
 
       - job: "Undergraduate Research Assistant"
         company: "Microbiome Metabolic Modeling Lab"
-        date: "Aug 2024 - Present"
+        date: "August 2024 - Present"
         featuredLink:
           enable: true
           url: "https://example.com"
@@ -225,15 +234,22 @@ params:
           - Optimization ([CVXPY](https://www.cvxpy.org/))
           - Machine Learning
           - Scientific Communication
+          - Web Development
           
       - job: "Lab Manager"
         company: "Center for Biomedical Innovation"
         companyUrl: "https://www.uvm.edu/cems/center-biomedical-innovation"
-        date: "Jan 2025 - Present"
+        date: "January 2025 - Present"
         info:
           enable: false
         content: |
           I helped facilitate lab resources, organization, and communication. I have also consulted on some BME Capstone projects, based in the lab. I aided in training other students and faculty on Soldering and 3D printing. 
+          
+          Skills developed in this position:
+          - Soldering
+          - 3D Printing
+          - Safety Protocols
+          - Lab Management
 
       - job: "Undergraduate Research Assistant"
         company: "Glass Brain Lab"
@@ -242,42 +258,49 @@ params:
         info:
           enable: false        
         content: |
-          I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. I am currently working on a project that will be used to help people find the best way to get around the city.
+          I am currently developing a Multi-Sensor system for non-invasive, in-home tracking of standard Activities of Daily Living (ADLs) for patients with Mild Cognitive Impairments (MCIs). This system will be implemented to help track and predict trends in patient health.
 
-
+          This project incorporates the following skills:
+          - User Centered Design
+          - 3D Printing
+          - Arduino
+          - Raspberry Pi
+          
       - job: "Inclusion Aide & Support Staff"
         company: "Special Recreation Association of Central Lake County"
         companyUrl: "https://sraclc.org/"
-        date: "May 2024 - Aug 2024"
+        date: "May 2024 - August 2024"
         featuredLink:
           enable: true
           url: "https://www.facebook.com/sraclc.org/posts/pfbid0SkgtXEA4UFCVzCEFurMT22JsPtCh7mie2h4GzQ7eRtpe3tY3RJh7NZQCvyHbe9H9l"
           name: "Friendly Face Friday Shoutout"
         content: |
-          I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. I am currently working on a project that will be used to help people find the best way to get around the city.
+          I worked with a variety of people with varying disabilities. I helped individuals enjoy their time with their peers through accomodations, helping individuals communicate with eachother more effectively.
 
+          I also helped facilitate activities, communicate with parents & staff, and provide aid during ADLs.
 
+          Skills I developed in this position:
+          - Communication
+          - Teamwork
+          - Empathy
+          - Problem Solving
       - job: "Assisted Living Staff"
         company: "Evolve Senior Living"
         companyUrl: "https://evolvesenior.com/communities/lake-zurich/"
-        date: "March 2021 - Jan 2025"
+        date: "March 2021 - May 2025"
         info:
           enable: true
           content: I worked at this location under 3 different companies and administrative teams.
         content: |
           Employee of the Month July 2021 & December 2021 for my dedication, organizational skills, and ability to work with a variety of people. I have also been recognized for my ability to work with patients with dementia and other cognitive disorders.
           
-          Departments
-          - Culinary
-          - Reception
-          - Maintenance
+          I provided quality care to individuals with cognitive & physical impairments (not limited to age-related disorders). Care was provided in a variety of departments. I also helped communicate between staff and administration, train new team members, ensure safety protocols were followed, and maintain a clean and organized work environment.
 
-          Tasks
-          - Train new employees
-          - Facilate communication between departments
-          - Organize and maintain appropriate workspaces
-          - Assist with patient care and communication
-
+          Skills I developed in this position:
+          - Communication
+          - Teamwork
+          - Empathy
+          - Healthcare Administration
 
   # Education
   education:
@@ -316,7 +339,7 @@ params:
           - Research Assistant in Microbiome Metabolic Modeling Lab
 
         featuredLink:
-          enable: true
+          enable: false
           name: "My academic record | Not Yet Available"
           url: "https://example.com"
 
@@ -324,9 +347,9 @@ params:
         school:
           name: "Lake Zurich High School"
           url: "https://lzhs.lz95.org/"
-        GPA: "4.2 out of 5.0"
+        #GPA: "4.2 out of 5.0"
         featuredLink:
-          enable: true
+          enable: false
           name: "My academic record | Not Yet Available"
           url: "https://example.com"
         content: |- 
@@ -337,7 +360,7 @@ params:
           Extracurricular Activities
             - Robotics Club
             - Spanish Club
-            - Young Hearts 4 Life ([YH4L)](https://www.yh4l.org/)) Junior Board 
+            - Young Hearts 4 Life ([YH4L](https://www.yh4l.org/)) Junior Board 
             
         
   # Achievements
@@ -345,46 +368,87 @@ params:
     enable: true
     # title: "Custom Name"
     items:
-      - title: Google kickstart runner
-        content: I solved all problems with optimal solution.
-        url: https://example.com
+      - title: Department of Electrical and Biomedical Engineering Junior Award (2024-2025)
+        content: Recognized for excellence in performance, contribution to the Biomedical Engineering program, and greatest promise of success
         image: /images/achievement.jpg
-      - title: Facebook Hackathon Winner
-        content: Developed a product using Artificial Intelligence.
+      - title: UVM Student Research Conference (2025)
+        content: Presented my research on "Prediction of Butyrate Production in Microbial Communities with Machine Learning"
         image: /images/achievement.jpg
-      - title: Hugo Profile
-        content: Developed a theme and getting 1K+ downloads per month.
-        url: "https://github.com/gurusabarish/hugo-profile"
-        image: /images/achievement.jpg
-      - title: Microsoft Imagine Runner
-        content: We are developed a product which can help others.
-      - title: Google Summer of Code
-        content: Contributed to a open source project.
-        url: https://example.com
-
+      
   # projects
   projects:
     enable: true
     # title: "Custom Name"
     items:
-      - title: Hugo Profile
-        content: A highly customizable and mobile first Hugo template for personal portfolio and blog.
+      # - title: Hugo Profile
+      #   content: A highly customizable and mobile first Hugo template for personal portfolio and blog.
+      #   image: /images/projects/profile.png
+      #   featured:
+      #     name: Demo
+      #     link: https://hugo-profile.netlify.app
+      #   badges:
+      #     - "Hugo"
+      #     - "Bootstrap"
+      #     - "Javascript"
+      #   links:
+      #     - icon: fa fa-envelope
+      #       url: mailto:?subject=Hugo%20Profile%20Template&body=Check%20it%20out:%20https%3a%2f%2fhugo-profile.netlify.app%2fblog%2fmarkdown-syntax%2f
+      #     - icon: fab fa-github
+      #       url: https://github.com/gurusabarish/hugo-profile
+      #     - icon: fab fa-twitter
+      #       url: https://twitter.com/intent/tweet?text=Check+it+out:&url=https%3A%2F%2Fgithub.com%2Fgurusabarish%2Fhugo-profile
+      
+      - title: "Prediction Butyrate Production in Microbial Communities with Machine Learning (In Progress)"
+        content: Studying the effectiveness of using LGBM Regressors for predicting Butyrate Production. This project is a part of my Masters Thesis.
+        image: /images/projects/profile.png
+        badges:
+          - "Machine Learning"
+          - "LightGBM"
+          - "Butyrate"
+        featured:
+           name: GitHub | Not Yet Available
+           link: "https://example.com"
+        links:
+          - icon: fa fa-github
+            url: "https://example.com"
+
+      - title: BioME Plate (In Progress)
+        content: A reusable, modular, open-source cell-culture plate used to study microbial interactions in a lab setting. 
         image: /images/projects/profile.png
         featured:
-          name: Demo
-          link: https://hugo-profile.netlify.app
+           name: Our GitHub | Not Yet Available
+           link: "https://example.com"
         badges:
-          - "Hugo"
-          - "Bootstrap"
-          - "Javascript"
+          - "Microbiology"
+          - "Engineering"
+          - "Prototyping"
+          
+      - title: "Automated Articular Knee-Cartilage MRI Segmentation"
+        content: A term project (group) exploring the use of machine learning to improve efficiency of auto-segmentation articular knee cartilage.
+        image: /images/projects/profile.png
+        badges:
+          - "Machine Learning"
+          - "Logistic Regression"
+          - "U-Net"
+          - "Reinforcement Learning"
         links:
-          - icon: fa fa-envelope
-            url: mailto:?subject=Hugo%20Profile%20Template&body=Check%20it%20out:%20https%3a%2f%2fhugo-profile.netlify.app%2fblog%2fmarkdown-syntax%2f
-          - icon: fab fa-github
-            url: https://github.com/gurusabarish/hugo-profile
-          - icon: fab fa-twitter
-            url: https://twitter.com/intent/tweet?text=Check+it+out:&url=https%3A%2F%2Fgithub.com%2Fgurusabarish%2Fhugo-profile
+          - icon: fa fa-github
+            url: "https://github.com/RSiegel03/CSYS5990_Segmentation_Final"
 
+      - title: Personal Website
+        content: My personal, self-taught website, built with Hugo and Bootstrap. It is a portfolio of my work, and a place to share my knowledge and experiences.
+        image: /images/projects/profile.png
+        badges:
+          - "Web Development"
+          - "Hugo"
+     
+      
+
+      
+      
+  # Gallery
+
+      
 
   
 
