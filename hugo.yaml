@@ -1,6 +1,6 @@
 baseURL: "https://hugo-profile.netlify.app"
 languageCode: "en-us"
-title: "Ryan Siegel Hugo Profile"
+title: "Ryan Siegel Profile"
 theme: hugo-profile
 
 outputs:
@@ -60,7 +60,7 @@ markup:
 
 params:
   title: "Ryan Siegel"
-  description: "I am a Senior Biomedical Engineering Student at UVM"
+  description: "I am a Master's Candidate in Biomedical Engineering Student at the University of Vermont"
   # staticPath: ""  # The path to serve the static files from
   favicon: "/fav.png"
 
@@ -136,18 +136,18 @@ params:
     enable: true
     intro: "Hi, my name is"
     title: "Ryan Siegel."
-    subtitle: "I am a Senior Biomedical Engineering Student at UVM"
+    subtitle: "MSBME Candidate at UVM"
     content: "I am passionate about exploration, technology, and sharing my knowledge for the world."
     image: /images/rsiegel.jpg
     bottomImage:
       enable: true
     # roundImage: true # Make hero image circular | default false
-    button:
-      enable: true
-      name: "Resumé | Not Yet Available"
-      url: "#about"
-      download: true
-      newPage: true
+    # button:
+    #   enable: true
+    #   name: "Resumé | Not Yet Available"
+    #   url: "#about"
+    #   download: true
+    #   newPage: true
 
     socialLinks:
       fontAwesomeIcons:
@@ -155,9 +155,9 @@ params:
           url: https://github.com/RSiegel03
         - icon: fab fa-linkedin
           url: https://example.com
-      customIcons:
-        - icon: /images/favicon.ico
-          url: "https://example.com"
+      # customIcons:
+      #   - icon: /images/favicon.ico
+      #     url: "https://example.com"
 
   # About
   about:
@@ -165,18 +165,46 @@ params:
     title: "About Me"
     image: "/images/me.png"
     content: |-
-      I am .........................................
+      Since I was young, I have always been good at breaking things (and putting them together) and helping others. 
+      My mother hated that I broke everything, but I couldn't help it, I just wanted to know how it worked, how 
+      well it worked, and what else it was capable of. I never enjoyed sitting still, and if I wasn't breaking something, 
+      I was likely spending time with friends or volunteering both at church or my martial arts studio. Time spent volunteering 
+      was when I realized how much our own success relies on others' support and that I never want to stop contributing to this world. 
+
+      My choice to pursue Biomedical Engineering (BME) was decided in middle school. It has been what keeps my mom's heart beating with her
+      pacemaker. It was what treated my mom's cancer when I was five. It was the medicine that allowed my mom's patients, veteran's
+      at the VA with traumatic injuries, to live without a limb or survive a TBI. Biomedical Engineering was the field that gave me the flexibility
+      to explore my world while helping those around me.   
+
+      Curiousity and kindness drive me to learn. I am currently pursuing a Master's degree in Biomedical Engineering at the University of 
+      Vermont, where I am focused on machine learning and computational modeling of microbial interactions. 
+      
+      I never expected to fall in love with coding & computational work, but the mathematical principles
+      at the core of it all are too inherently beautiful!
+
+      When I'm not working on research or school, I am usually working on some personal project(s), spending time 
+      with my friends and family, or traveling. My personal projects (some shared below) are fun gadgets that I have designed, assembled,
+      or somehow worked on to fill my time and continue exploring the world as an engineer. With my family and friends, I am often cooking food, 
+      baking (bread, cookies or pies are most common). playing cards, or relaxing at a nice campfire. I love traveling and 
+      have been fortunate to travel to 36 U.S. States (Including Alaska, Hawaii, & Puerto Rico) and 2 Countries (Costa Rica & Canada).
+
+      The world is an amazing place, with so many fascinating people to meet and things to learn. I am excited to continue exploring it, and
+      make an impact to allow others to explore it as well.
+
 
 
     techskills:
       enable: true
-      title: "Here are a few technologies I've been working with recently:"
+      title: "Here are a few of my technical skills:"
       items:
-        - "Python"
+        - "Metabolic Modeling"
+        - "Computational Systems Biology"
         - "Machine Learning"
+        - "Optimization"
+        - "Complex Systems"
         - "Arduino"
-        - "Raspberry Pi"
-        - "3D Printing"
+        - "3D Printing & Modeling"
+        - "Raspberry Pi (Some Experience)"
     socialskills:
       enable: true
       title: "My Interpersonal Skills:"
@@ -185,6 +213,7 @@ params:
         - "Problem Solving"
         - "Teamwork"
         - "Communication"
+        - "Teaching & Mentoring"
         
 
     
@@ -201,7 +230,7 @@ params:
         date: "Jan 2024 - Present"
         info:
           enable: false
-        content: "I am currently working as a software developer at [example org.](https://example.com) in San Francisco, CA. I am currently working on a project that will be used to help people find the best way to get around the city."
+        content: " "
 
       - job: "Undergraduate Research Assistant"
         company: "Microbiome Metabolic Modeling Lab"

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
-<link rel="icon" href=/fav.png type="image/gif">
+<link rel="icon" href="/fav.png" type="image/gif">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,17 +28,24 @@
 
 
 
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="I am a Senior Biomedical Engineering Student at UVM" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/categories/" /><meta property="og:site_name" content="Ryan Siegel" />
+<meta property="og:url" content="http://localhost:1313/categories/">
+  <meta property="og:site_name" content="Ryan Siegel Profile">
+  <meta property="og:title" content="Categories">
+  <meta property="og:description" content="I am a Master&#39;s Candidate in Biomedical Engineering Student at the University of Vermont">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content="I am a Senior Biomedical Engineering Student at UVM"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Categories">
+  <meta name="twitter:description" content="I am a Master&#39;s Candidate in Biomedical Engineering Student at the University of Vermont">
+
+
+
 
 
 <link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all"><link rel="stylesheet" href="/css/header.css" media="all">
+<link rel="stylesheet" href="/css/language-switcher.css" media="all">
 <link rel="stylesheet" href="/css/footer.css" media="all">
 
 
@@ -99,7 +106,7 @@
 
 
 
-<meta name="description" content="Categories of Ryan Siegel Hugo Profile">
+<meta name="description" content="Categories of Ryan Siegel Profile">
 <link rel="stylesheet" href="/css/list.css" media="all">
 
 
@@ -107,7 +114,7 @@
   
 
   <title>
-Categories | Ryan Siegel Hugo Profile
+Categories | Ryan Siegel Profile
 
   </title>
 </head>
@@ -121,13 +128,16 @@ Categories | Ryan Siegel Hugo Profile
 
     switch (localStorageValue) {
         case "dark":
+            document.documentElement.classList.add('dark');
             document.body.classList.add('dark');
             break;
         case "light":
             document.body.classList.remove('dark');
+            document.documentElement.classList.remove('dark');
             break;
         default:
             if (mediaQuery) {
+                document.documentElement.classList.add('dark');
                 document.body.classList.add('dark');
             }
             break;
@@ -258,11 +268,10 @@ Categories | Ryan Siegel Hugo Profile
                     
                     
 
-                    
                     <li class="nav-item navbar-text">
                         
                         <div class="text-center">
-                            <button id="theme-toggle">
+                            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
                                 <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                                 </svg>
@@ -303,12 +312,14 @@ Categories | Ryan Siegel Hugo Profile
 
   </div><footer>
     
+
+
  
 
 <div class="text-center pt-2">
     
     <span class="px-1">
-        <a href="https://github.com/RSiegel03" aria-label="github">
+        <a href="https://github.com/RSiegel03" target="_blank" aria-label="github">
             <svg xmlns="http://www.w3.org/2000/svg" width="2.7em" height="2.7em" viewBox="0 0 1792 1792">
                 <path id="footer-socialNetworks-github-svg-path"
                     d="M522 1352q-8 9-20-3-13-11-4-19 8-9 20 3 12 11 4 19zm-42-61q9 12 0 19-8 6-17-7t0-18q9-7 17 6zm-61-60q-5 7-13 2-10-5-7-12 3-5 13-2 10 5 7 12zm31 34q-6 7-16-3-9-11-2-16 6-6 16 3 9 11 2 16zm129 112q-4 12-19 6-17-4-13-15t19-7q16 5 13 16zm63 5q0 11-16 11-17 2-17-11 0-11 16-11 17-2 17 11zm58-10q2 10-14 14t-18-8 14-15q16-2 18 9zm964-956v960q0 119-84.5 203.5t-203.5 84.5h-224q-16 0-24.5-1t-19.5-5-16-14.5-5-27.5v-239q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-121-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-86-13.5q-44 113-7 204-79 85-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-40 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 103t.5 68q0 22-11 33.5t-22 13-33 1.5h-224q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z" />
@@ -335,7 +346,7 @@ Categories | Ryan Siegel Hugo Profile
 
     
     <span class="px-1">
-        <a href="https://linkedin.com" aria-label="linkedin">
+        <a href="https://linkedin.com" target="_blank" aria-label="linkedin">
             <svg xmlns="http://www.w3.org/2000/svg" width='2.4em' height='2.4em' fill="#fff" aria-label="LinkedIn"
                 viewBox="0 0 512 512">
                 <rect width="512" height="512" fill="#0077b5" rx="15%" />
@@ -357,16 +368,20 @@ Categories | Ryan Siegel Hugo Profile
         <div class="col-md-4 text-center">
             
                 <div class="pb-2">
-                    <a href="http://localhost:1313/" title="Ryan Siegel Hugo Profile">
+                    <a href="http://localhost:1313/" title="Ryan Siegel Profile">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>
                 </div>
             
-            Ryan Siegel | 2025
+            &copy; 2026  All Rights Reserved
             <div class="text-secondary">
                 Made with
-                    <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
+                <span class="text-danger">
+                    &#10084;
+                </span>
+                and
+                <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
                     title="Designed and developed by gurusabarish">
                     Hugo Profile
                 </a>
@@ -378,6 +393,7 @@ Categories | Ryan Siegel Hugo Profile
 <script>
     if (document.body.className.includes("dark")) {
         document.body.classList.remove('dark');
+        document.documentElement.classList.remove('dark');
         localStorage.setItem("pref-theme", 'light');
     }
 </script>
@@ -387,9 +403,11 @@ Categories | Ryan Siegel Hugo Profile
     document.getElementById("theme-toggle").addEventListener("click", () => {
         if (document.body.className.includes("dark")) {
             document.body.classList.remove('dark');
+            document.documentElement.classList.remove('dark');
             localStorage.setItem("pref-theme", 'light');
         } else {
             document.body.classList.add('dark');
+            document.documentElement.classList.add('dark');
             localStorage.setItem("pref-theme", 'dark');
         }
     })
@@ -402,6 +420,10 @@ Categories | Ryan Siegel Hugo Profile
 </script>
 
 
+    <script>
+      
+      window.searchIndexURL = "/index.json";
+    </script>
     <script src="/js/search.js"></script>
 
 
