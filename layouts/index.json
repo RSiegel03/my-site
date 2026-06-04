@@ -1,0 +1,39 @@
+{{- $indexData := slice -}}
+{{- $home := .Site.GetPage "/" -}}
+{{- if $home -}}
+  {{- if $home.Params.publications -}}
+    {{- $indexData = $indexData | append (dict "title" "Publications" "content" $home.Params.publications "permalink" "/#publications") -}}
+  {{- end -}}
+  {{- if $home.Plain -}}
+    {{- $indexData = $indexData | append (dict "title" $home.Title "content" $home.Plain "permalink" "/") -}}
+  {{- end -}}
+{{- end -}}
+{{- if .Site.Params.about.enable -}}
+  {{- $indexData = $indexData | append (dict "title" "About Me" "content" .Site.Params.about.content "permalink" "/#about") -}}
+{{- end -}}
+{{- if .Site.Params.projects.enable -}}
+  {{- range .Site.Params.projects.items -}}
+    {{- $indexData = $indexData | append (dict "title" .title "content" .content "permalink" "/#projects") -}}
+  {{- end -}}
+{{- end -}}
+{{- if .Site.Params.experience.enable -}}
+  {{- range .Site.Params.experience.items -}}
+    {{- $company := .company -}}
+    {{- range .jobs -}}
+      {{- $jobTitle := printf "%s at %s" .name $company -}}
+      {{- $indexData = $indexData | append (dict "title" $jobTitle "content" .content "permalink" "/#experience") -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if .Site.Params.education.enable -}}
+  {{- range .Site.Params.education.items -}}
+    {{- $eduTitle := printf "%s at %s" .title .school.name -}}
+    {{- $indexData = $indexData | append (dict "title" $eduTitle "content" .content "permalink" "/#education") -}}
+  {{- end -}}
+{{- end -}}
+{{- if .Site.Params.achievements.enable -}}
+  {{- range .Site.Params.achievements.items -}}
+    {{- $indexData = $indexData | append (dict "title" .title "content" .content "permalink" "/#achievements") -}}
+  {{- end -}}
+{{- end -}}
+{{- jsonify $indexData -}}

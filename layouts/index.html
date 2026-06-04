@@ -5,6 +5,7 @@
 
 <!-- fontawesome -->
 <script defer src="{{ (printf "%sfontawesome-6/all-6.4.2.js" (.Site.Params.staticPath | default "")) | relURL }}"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
 {{ end }}
 
 {{ define "title" }}
@@ -20,3 +21,4 @@
 {{- partial "sections/achievements.html" . -}}
 {{- partial "sections/contact.html" . -}}
 {{ end }}
+

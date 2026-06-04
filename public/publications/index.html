@@ -30,15 +30,15 @@
 
 <meta property="og:url" content="http://localhost:1313/publications/">
   <meta property="og:site_name" content="Ryan Siegel Profile">
-  <meta property="og:title" content="Publications">
-  <meta property="og:description" content="Here is a list of my published work.">
+  <meta property="og:title" content="My Published Work">
+  <meta property="og:description" content="I am a Master&#39;s Candidate in Biomedical Engineering Student at the University of Vermont">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Publications">
-  <meta name="twitter:description" content="Here is a list of my published work.">
+  <meta name="twitter:title" content="My Published Work">
+  <meta name="twitter:description" content="I am a Master&#39;s Candidate in Biomedical Engineering Student at the University of Vermont">
 
 
 
@@ -57,7 +57,7 @@
         --text-secondary-color: #262730;
         --text-link-color: #0E8008;
         --background-color: #eaedf0;
-        --secondary-background-color: #0E8008;
+        --secondary-background-color: #ffffff;
         --primary-color: #0E8008;
         --secondary-color: #f8f9fa;
 
@@ -106,16 +106,11 @@
 
 
 
-<meta name="description" content="Publications of Ryan Siegel Profile">
-<link rel="stylesheet" href="/css/list.css" media="all">
-
 
   
   
 
   <title>
-Publications | Ryan Siegel Profile
-
   </title>
 </head>
 
@@ -301,17 +296,92 @@ Publications | Ryan Siegel Profile
     </nav>
 </header>
 <div id="content">
-<div class="container pt-5" id="list-page">
-    <h2 class="text-center pb-2">Publications</h2>
-    <div class="row">
+<style>
+     
+    .pub-card {
+         
+        background-color: var(--secondary-background-color) !important;
+        border: none;
+        border-left: 4px solid var(--primary-color);
+        border-radius: 0.5rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .pub-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+    }
+    
+    .pub-title {
+        color: var(--text-color);
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+    
+    .pub-meta {
+        color: var(--text-color);
+        font-size: 0.95rem;
+    }
+    
+    .pub-authors {
+        color: var(--text-secondary-color);
+        font-style: italic;
+    }
+    
+    .pub-journal {
+        font-weight: 500;
+    }
+    
+     
+    .pub-doi-btn {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+    
+    .pub-doi-btn:hover {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+    }
+</style>
+
+<section class="py-0 py-sm-5">
+    <div class="container bg-transparent">
+        <h3 class="text-center bg-transparent mb-5">My Published Work</h3>
         
-        <div class="row justify-content-center">
-            <div class="col-auto m-3">
+        <div class="row justify-content-center px-3">
+            <div class="col-sm-12 col-md-12 col-lg-8 content">
+                
+                
+
+                <div class="publications-list">
+                    
+                    <div class="card pub-card mb-4 shadow-sm">
+                        <div class="card-body px-4 py-3">
+                            <h4 class="pub-title mb-2">Equation-Based Integration of Flux Balance Analysis with Diffusion for Spatio-Temporal Simulation of Microbial Communities</h4>
+                            
+                            <div class="pub-meta mb-3">
+                                <span class="pub-authors">Frederick Senya, <strong>Ryan Siegel</strong>, Ilija Dukovski, David Bernstein</span><br>
+                                <span class="pub-journal">bioRxiv</span> (2026)
+                            </div>
+
+                            
+                            <a href="https://doi.org/10.64898/2026.04.11.717857" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary pub-doi-btn text-decoration-none">
+                                DOI: 10.64898/2026.04.11.717857 &rarr;
+                            </a>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
                 
             </div>
         </div>
     </div>
-</div>
+</section>
 
   </div><footer>
     
