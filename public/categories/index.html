@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
-<link rel="icon" href="/fav.png" type="image/gif">
+<link rel="icon" href="/brain.png" type="image/gif">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,19 +53,19 @@
 
 <style>
     :root {
-        --text-color: #343a40;
-        --text-secondary-color: #6c757d;
-        --text-link-color: #007bff;
+        --text-color: #262730;
+        --text-secondary-color: #262730;
+        --text-link-color: #0E8008;
         --background-color: #eaedf0;
-        --secondary-background-color: #64ffda1a;
-        --primary-color: #007bff;
+        --secondary-background-color: #0E8008;
+        --primary-color: #0E8008;
         --secondary-color: #f8f9fa;
 
          
         --text-color-dark: #e4e6eb;
         --text-secondary-color-dark: #b0b3b8;
         --text-link-color-dark: #ffffff;
-        --background-color-dark: #18191a;
+        --background-color-dark: #05210b;
         --secondary-background-color-dark: #212529;
         --primary-color-dark: #ffffff;
         --secondary-color-dark: #212529;
@@ -153,7 +153,7 @@ Categories | Ryan Siegel Profile
         let profileHeaderElem = document.getElementById("profileHeader");
         let currentScrollPos = window.pageYOffset;
         let resetHeaderStyle = false;
-        let showNavBarOnScrollUp =  true ;
+        let showNavBarOnScrollUp = { $showNavBarOnScrollUp };
         let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
         if (showNavBar) {
             profileHeaderElem.classList.add("showHeaderOnTop");
@@ -178,8 +178,8 @@ Categories | Ryan Siegel Profile
             
             <a class="navbar-brand primary-font text-wrap" href="/">
                 
-                <img src="/fav.png" width="30" height="30"
-                    class="d-inline-block align-top">
+                <img src="/brain.png" width="30" height="30"
+                    class="d-inline-block align-top adaptive-icon">
                 Ryan Siegel
                 
             </a>
@@ -255,16 +255,19 @@ Categories | Ryan Siegel Profile
                     
 
                     
+
+                    
+
+                    
+                    
+                    
+                    
                     <li class="nav-item navbar-text">
-                        <a class="nav-link" href="/#contact"
-                            aria-label="contact">
-                            Contact
+                        <a class="nav-link" href="/publications" title="Research Publications">
+                            
+                            Publications
                         </a>
                     </li>
-                    
-
-                    
-
                     
                     
 
@@ -369,18 +372,14 @@ Categories | Ryan Siegel Profile
             
                 <div class="pb-2">
                     <a href="http://localhost:1313/" title="Ryan Siegel Profile">
-                        <img alt="Footer logo" src="/fav.png"
-                            height="40px" width="40px">
+                        <img alt="Footer logo" src="/brain.png"
+                            height="40px" width="40px" class="adaptive-icon">
                     </a>
                 </div>
             
             &copy; 2026  All Rights Reserved
             <div class="text-secondary">
                 Made with
-                <span class="text-danger">
-                    &#10084;
-                </span>
-                and
                 <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
                     title="Designed and developed by gurusabarish">
                     Hugo Profile
@@ -432,8 +431,6 @@ Categories | Ryan Siegel Profile
 
 
 
-
-<script src="/js/contact.js"></script>
 
 
 

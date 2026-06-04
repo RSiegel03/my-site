@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
-<link rel="icon" href="/fav.png" type="image/gif">
+<link rel="icon" href="/brain.png" type="image/gif">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,19 +54,19 @@
 
 <style>
     :root {
-        --text-color: #343a40;
-        --text-secondary-color: #6c757d;
-        --text-link-color: #007bff;
+        --text-color: #262730;
+        --text-secondary-color: #262730;
+        --text-link-color: #0E8008;
         --background-color: #eaedf0;
-        --secondary-background-color: #64ffda1a;
-        --primary-color: #007bff;
+        --secondary-background-color: #0E8008;
+        --primary-color: #0E8008;
         --secondary-color: #f8f9fa;
 
          
         --text-color-dark: #e4e6eb;
         --text-secondary-color-dark: #b0b3b8;
         --text-link-color-dark: #ffffff;
-        --background-color-dark: #18191a;
+        --background-color-dark: #05210b;
         --secondary-background-color-dark: #212529;
         --primary-color-dark: #ffffff;
         --secondary-color-dark: #212529;
@@ -158,7 +158,7 @@ Ryan Siegel Profile
         let profileHeaderElem = document.getElementById("profileHeader");
         let currentScrollPos = window.pageYOffset;
         let resetHeaderStyle = false;
-        let showNavBarOnScrollUp =  true ;
+        let showNavBarOnScrollUp = { $showNavBarOnScrollUp };
         let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
         if (showNavBar) {
             profileHeaderElem.classList.add("showHeaderOnTop");
@@ -183,8 +183,8 @@ Ryan Siegel Profile
             
             <a class="navbar-brand primary-font text-wrap" href="/">
                 
-                <img src="/fav.png" width="30" height="30"
-                    class="d-inline-block align-top">
+                <img src="/brain.png" width="30" height="30"
+                    class="d-inline-block align-top adaptive-icon">
                 Ryan Siegel
                 
             </a>
@@ -260,16 +260,19 @@ Ryan Siegel Profile
                     
 
                     
+
+                    
+
+                    
+                    
+                    
+                    
                     <li class="nav-item navbar-text">
-                        <a class="nav-link" href="/#contact"
-                            aria-label="contact">
-                            Contact
+                        <a class="nav-link" href="/publications" title="Research Publications">
+                            
+                            Publications
                         </a>
                     </li>
-                    
-
-                    
-
                     
                     
 
@@ -307,16 +310,16 @@ Ryan Siegel Profile
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-8 content animate" id="primary-font">
                 <span class="subtitle">
-                    Hi, my name is
+                    
                 </span>
                 <h1>
                     Ryan Siegel.
                 </h1>
                 <h2>
-                    MSBME Candidate at UVM
+                    M.S. Candidate in BME at the University of Vermont
                 </h2>
                 <p class="hero-content">
-                    I am passionate about exploration, technology, and sharing my knowledge for the world.
+                    Exploring the world as an engineer &amp; lifelong learner
                 </p>
                 <div class="row">
                     <div class="col-auto h-100">
@@ -333,15 +336,6 @@ Ryan Siegel Profile
         </a>
     </span>
     
-    <span class="px-1">
-        <a href="https://example.com"
-             target="_blank" 
-            class="btn social-icon"
-        >
-            <i class="fab fa-linkedin"></i>
-        </a>
-    </span>
-    
 
     
 </span>
@@ -351,7 +345,7 @@ Ryan Siegel Profile
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="row justify-content-center">
                     <div class="col-sm-12 col-md-9 pt-5 image animate px-5 px-md-5 px-lg-0 text-center">
-                        <img src="/images/rsiegel.jpg"
+                        <img src="/images/2026-grad-portrait.jpg"
                             class="img-thumbnail mx-auto"
                             alt="Ryan Siegel profile image"
                         >
@@ -631,8 +625,16 @@ Ryan Siegel Profile
         <div class="bg-transparent row justify-content-center px-3 py-5">
             
             <div class="col-sm-12 col-md-8 col-lg-4 mb-5 mb-sm-0 mb-md-5 mb-lg-0 d-none d-sm-none d-md-block">
-                <div class="image d-flex px-5">
-                    <img src="/images/me.png" class="img-thumbnail mx-auto rounded-circle" alt="Ryan Siegel profile picture">
+                <div class="image px-5">
+                    <figure class="figure d-inline-block text-center mb-0">
+                        <img src="/images/niagara-falls.jpg" class="figure-img img-thumbnail rounded-square mb-2" alt="Ryan Siegel profile picture">
+                        
+                        
+                        <figcaption class="figure-caption">
+                            My partner and I at Niagara Falls, NY. We love exploring the world and all it has to offer!
+                        </figcaption>
+                        
+                    </figure>
                 </div>
             </div>
             
@@ -674,15 +676,17 @@ make an impact to allow others to explore it as well.</p>
                         
                             
                             
+                                
+                            
                             <li class="nav-item px-1 bg-transparent" role="presentation">
                                 <div
                                     class="nav-link active bg-transparent"
                                     aria-selected="true"
                                     role="tab"
                                     data-bs-toggle="pill"
-                                    id='university-of-vermont--tab'
-                                    data-bs-target='#pills-university-of-vermont-'
-                                    aria-controls='university-of-vermont-'
+                                    id='university-of-vermont-jan-2024-present-tab'
+                                    data-bs-target='#pills-university-of-vermont-jan-2024-present'
+                                    aria-controls='university-of-vermont-jan-2024-present'
                                 >
                                     University of Vermont
                                 </div>
@@ -690,15 +694,17 @@ make an impact to allow others to explore it as well.</p>
                         
                             
                             
+                                
+                            
                             <li class="nav-item px-1 bg-transparent" role="presentation">
                                 <div
                                     class="nav-link  bg-transparent"
                                     aria-selected="true"
                                     role="tab"
                                     data-bs-toggle="pill"
-                                    id='microbiome-metabolic-modeling-lab--tab'
-                                    data-bs-target='#pills-microbiome-metabolic-modeling-lab-'
-                                    aria-controls='microbiome-metabolic-modeling-lab-'
+                                    id='microbiome-metabolic-modeling-lab-aug-2024-present-tab'
+                                    data-bs-target='#pills-microbiome-metabolic-modeling-lab-aug-2024-present'
+                                    aria-controls='microbiome-metabolic-modeling-lab-aug-2024-present'
                                 >
                                     Microbiome Metabolic Modeling Lab
                                 </div>
@@ -706,15 +712,17 @@ make an impact to allow others to explore it as well.</p>
                         
                             
                             
+                                
+                            
                             <li class="nav-item px-1 bg-transparent" role="presentation">
                                 <div
                                     class="nav-link  bg-transparent"
                                     aria-selected="true"
                                     role="tab"
                                     data-bs-toggle="pill"
-                                    id='center-for-biomedical-innovation--tab'
-                                    data-bs-target='#pills-center-for-biomedical-innovation-'
-                                    aria-controls='center-for-biomedical-innovation-'
+                                    id='center-for-biomedical-innovation-jan-2025-may-2026-tab'
+                                    data-bs-target='#pills-center-for-biomedical-innovation-jan-2025-may-2026'
+                                    aria-controls='center-for-biomedical-innovation-jan-2025-may-2026'
                                 >
                                     Center for Biomedical Innovation
                                 </div>
@@ -722,15 +730,17 @@ make an impact to allow others to explore it as well.</p>
                         
                             
                             
+                                
+                            
                             <li class="nav-item px-1 bg-transparent" role="presentation">
                                 <div
                                     class="nav-link  bg-transparent"
                                     aria-selected="true"
                                     role="tab"
                                     data-bs-toggle="pill"
-                                    id='glass-brain-lab--tab'
-                                    data-bs-target='#pills-glass-brain-lab-'
-                                    aria-controls='glass-brain-lab-'
+                                    id='glass-brain-lab-may-2025-present-tab'
+                                    data-bs-target='#pills-glass-brain-lab-may-2025-present'
+                                    aria-controls='glass-brain-lab-may-2025-present'
                                 >
                                     Glass Brain Lab
                                 </div>
@@ -738,15 +748,17 @@ make an impact to allow others to explore it as well.</p>
                         
                             
                             
+                                
+                            
                             <li class="nav-item px-1 bg-transparent" role="presentation">
                                 <div
                                     class="nav-link  bg-transparent"
                                     aria-selected="true"
                                     role="tab"
                                     data-bs-toggle="pill"
-                                    id='special-recreation-association-of-central-lake-county--tab'
-                                    data-bs-target='#pills-special-recreation-association-of-central-lake-county-'
-                                    aria-controls='special-recreation-association-of-central-lake-county-'
+                                    id='special-recreation-association-of-central-lake-county-may-2024-aug-2024-tab'
+                                    data-bs-target='#pills-special-recreation-association-of-central-lake-county-may-2024-aug-2024'
+                                    aria-controls='special-recreation-association-of-central-lake-county-may-2024-aug-2024'
                                 >
                                     Special Recreation Association of Central Lake County
                                 </div>
@@ -754,15 +766,17 @@ make an impact to allow others to explore it as well.</p>
                         
                             
                             
+                                
+                            
                             <li class="nav-item px-1 bg-transparent" role="presentation">
                                 <div
                                     class="nav-link  bg-transparent"
                                     aria-selected="true"
                                     role="tab"
                                     data-bs-toggle="pill"
-                                    id='evolve-senior-living--tab'
-                                    data-bs-target='#pills-evolve-senior-living-'
-                                    aria-controls='evolve-senior-living-'
+                                    id='evolve-senior-living-march-2021-jan-2025-tab'
+                                    data-bs-target='#pills-evolve-senior-living-march-2021-jan-2025'
+                                    aria-controls='evolve-senior-living-march-2021-jan-2025'
                                 >
                                     Evolve Senior Living
                                 </div>
@@ -776,12 +790,49 @@ make an impact to allow others to explore it as well.</p>
                             
                             
                             
+                                
+                            
                             <div
                                 class="tab-pane fade bg-transparent show active"
                                 role="tabpanel"
-                                id='pills-university-of-vermont-'
-                                aria-labelledby='university-of-vermont--tab'
+                                id='pills-university-of-vermont-jan-2024-present'
+                                aria-labelledby='university-of-vermont-jan-2024-present-tab'
                             >
+                                
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <span class="h4">Teaching Assistant</span>
+                                                
+                                                
+                                                
+                                                
+                                                    <small>-</small>
+                                                    <a href="https://www.uvm.edu/cems/ebe" target="_blank">University of Vermont</a>
+                                                
+                                            </div>
+                                            <div class="d-block">
+                                                <small>Jan 2024 - Present</small>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="pb-2 pb-3">
+                                            <p>I have assisted in teaching the following courses (Chronologically):</p>
+<ul>
+<li>BME 1600: Introduction to BME Design (Spring 2024)</li>
+<li>BME 2000: Biomechanics &amp; Sensing (Fall 2024)</li>
+<li>BME 2600: BME Design 1 (Fall 2024)</li>
+<li>BME 1600: Introduction to BME Design (Spring 2025)</li>
+<li>EE 2145: Electrical Engineering Concepts (Fall 2025)</li>
+<li>BME 3000: Systems &amp; Signals (Fall 2025)</li>
+<li>CMPE 5990: Machine Learning for Engineers (Fall 2025)</li>
+<li>BME 1605: Introduction to BME Design (Spring 2026)</li>
+</ul>
+<p>Across each of these courses, I have been responsible for leading lectures, grading assignments, holding office hours,
+and ensuring each student receives the support they need.</p>
+
+                                        </div>
+                                    </div>
                                 
                             </div>
                         
@@ -790,12 +841,69 @@ make an impact to allow others to explore it as well.</p>
                             
                             
                             
+                                
+                            
                             <div
                                 class="tab-pane fade bg-transparent "
                                 role="tabpanel"
-                                id='pills-microbiome-metabolic-modeling-lab-'
-                                aria-labelledby='microbiome-metabolic-modeling-lab--tab'
+                                id='pills-microbiome-metabolic-modeling-lab-aug-2024-present'
+                                aria-labelledby='microbiome-metabolic-modeling-lab-aug-2024-present-tab'
                             >
+                                
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <span class="h4">Research Assistant</span>
+                                                
+                                                
+                                                    <span class="p-2">
+                                                        <span
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            data-bs-original-title=This&#32;position&#32;was&#32;compensated&#32;with&#32;pay,&#32;except&#32;3&#32;semesters&#32;of&#32;educational&#32;credit.
+                                                        > 
+                                                            <i class="fas fa-info-circle fa-xs"></i>
+                                                        </span>
+                                                    </span>
+                                                
+                                                
+                                                
+                                                    <small>-</small>
+                                                    <a href="https://m-3-lab.github.io/" target="_blank">Microbiome Metabolic Modeling Lab</a>
+                                                
+                                            </div>
+                                            <div class="d-block">
+                                                <small>Aug 2024 - Present</small>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="pb-2 pb-3">
+                                            <p>Projects I have contributed to:</p>
+<ul>
+<li>Predicting Butyrate Production from Microbial Abundance Data using Machine Learning (First project and introduction to Microbiome Engineering)</li>
+<li>Design of Lab Website</li>
+<li>Chapter on Spatio-temporal Modeling of Microbial Interactions</li>
+<li>(ACTIVE) Hybrid Optimization &amp; Deep Learning approach for predicting single microbe phenotypes. (Masters Project)</li>
+<li>(ACTIVE) Python Package with a new method of simulation microbial community growth. Publication in progress.</li>
+</ul>
+<p>Initial work focused on gaining skills and intuition for the field, while currently I am leveraging these skills to re-think
+metabolic modeling. A soon-to-be-released tool, Greedy Interaction FBA, is a novel method of understanding emergent microbial
+community interactions using an iterative approach. Furthermore, metabolic models are inherently prone to error due to the
+vastness of the networks, the Master&rsquo;s Project seeks to leverage differentiable optimization with deep learning to learn &amp;
+adjust existing models for.</p>
+<p>Skills &amp; Tools Used:</p>
+<ul>
+<li>COBRApy</li>
+<li>COMETSpy</li>
+<li>CVXpy</li>
+<li>Assorted Machine Learning Tools</li>
+<li>KBase</li>
+<li>ModelSEED</li>
+<li>AGORA &amp; Virtual Metabolic Human</li>
+</ul>
+
+                                        </div>
+                                    </div>
                                 
                             </div>
                         
@@ -804,12 +912,38 @@ make an impact to allow others to explore it as well.</p>
                             
                             
                             
+                                
+                            
                             <div
                                 class="tab-pane fade bg-transparent "
                                 role="tabpanel"
-                                id='pills-center-for-biomedical-innovation-'
-                                aria-labelledby='center-for-biomedical-innovation--tab'
+                                id='pills-center-for-biomedical-innovation-jan-2025-may-2026'
+                                aria-labelledby='center-for-biomedical-innovation-jan-2025-may-2026-tab'
                             >
+                                
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <span class="h4">Lab Manager</span>
+                                                
+                                                
+                                                
+                                                
+                                                    <small>-</small>
+                                                    <a href="https://www.uvm.edu/cems/center-biomedical-innovation" target="_blank">Center for Biomedical Innovation</a>
+                                                
+                                            </div>
+                                            <div class="d-block">
+                                                <small>Jan 2025 - May 2026</small>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="pb-2 pb-3">
+                                            I helped facilitate lab resources, organization, event-planning, and communication. I consulted on BME Capstone projects,
+based in the lab. I aided in training other students and faculty on Soldering and 3D printing. Coordinated Biomedical
+Engineering Society Club events for professional development, community service, &amp; networking
+                                        </div>
+                                    </div>
                                 
                             </div>
                         
@@ -818,12 +952,38 @@ make an impact to allow others to explore it as well.</p>
                             
                             
                             
+                                
+                            
                             <div
                                 class="tab-pane fade bg-transparent "
                                 role="tabpanel"
-                                id='pills-glass-brain-lab-'
-                                aria-labelledby='glass-brain-lab--tab'
+                                id='pills-glass-brain-lab-may-2025-present'
+                                aria-labelledby='glass-brain-lab-may-2025-present-tab'
                             >
+                                
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <span class="h4">Research Assistant</span>
+                                                
+                                                
+                                                
+                                                
+                                                    <small>-</small>
+                                                    <a href="https://www.uvm.edu/cems/center-biomedical-innovation" target="_blank">Glass Brain Lab</a>
+                                                
+                                            </div>
+                                            <div class="d-block">
+                                                <small>May 2025 - Present</small>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="pb-2 pb-3">
+                                            I am currently leading the development of the electronic components of a novel multi-sensor system for monitoring elderly
+individuals&rsquo; mild cognitive impairment (MCI) in their homes. This is part of a pilot study to create &amp; compile the full suite of
+sensors for wearable and non-wearable monitoring of Activities of Daily Living (ADLs).
+                                        </div>
+                                    </div>
                                 
                             </div>
                         
@@ -832,12 +992,40 @@ make an impact to allow others to explore it as well.</p>
                             
                             
                             
+                                
+                            
                             <div
                                 class="tab-pane fade bg-transparent "
                                 role="tabpanel"
-                                id='pills-special-recreation-association-of-central-lake-county-'
-                                aria-labelledby='special-recreation-association-of-central-lake-county--tab'
+                                id='pills-special-recreation-association-of-central-lake-county-may-2024-aug-2024'
+                                aria-labelledby='special-recreation-association-of-central-lake-county-may-2024-aug-2024-tab'
                             >
+                                
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <span class="h4">Inclusion Aide &amp; Support Staff</span>
+                                                
+                                                
+                                                
+                                                
+                                                    <small>-</small>
+                                                    <a href="https://sraclc.org/" target="_blank">Special Recreation Association of Central Lake County</a>
+                                                
+                                            </div>
+                                            <div class="d-block">
+                                                <small>May 2024 - Aug 2024</small>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="pb-2 pb-3">
+                                            <p>I worked as a support staff for individuals of varying ages, cognitive abilities, and physical abilities. I
+provided support during various summertime activities allowing each individual to have fun, be active, and feel included
+in a safe environment.</p>
+<p>I was recognized for my dedication and excitement in the <a href="https://www.facebook.com/sraclc.org/posts/pfbid0SkgtXEA4UFCVzCEFurMT22JsPtCh7mie2h4GzQ7eRtpe3tY3RJh7NZQCvyHbe9H9l">Friendly Face Friday Shoutout</a></p>
+
+                                        </div>
+                                    </div>
                                 
                             </div>
                         
@@ -846,12 +1034,60 @@ make an impact to allow others to explore it as well.</p>
                             
                             
                             
+                                
+                            
                             <div
                                 class="tab-pane fade bg-transparent "
                                 role="tabpanel"
-                                id='pills-evolve-senior-living-'
-                                aria-labelledby='evolve-senior-living--tab'
+                                id='pills-evolve-senior-living-march-2021-jan-2025'
+                                aria-labelledby='evolve-senior-living-march-2021-jan-2025-tab'
                             >
+                                
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <span class="h4">Assisted Living Staff</span>
+                                                
+                                                
+                                                    <span class="p-2">
+                                                        <span
+                                                            data-bs-toggle="tooltip"
+                                                            data-bs-placement="top"
+                                                            data-bs-original-title=I&#32;worked&#32;at&#32;this&#32;location&#32;under&#32;3&#32;different&#32;companies&#32;and&#32;administrative&#32;teams.
+                                                        > 
+                                                            <i class="fas fa-info-circle fa-xs"></i>
+                                                        </span>
+                                                    </span>
+                                                
+                                                
+                                                
+                                                    <small>-</small>
+                                                    <a href="https://evolvesenior.com/communities/lake-zurich/" target="_blank">Evolve Senior Living</a>
+                                                
+                                            </div>
+                                            <div class="d-block">
+                                                <small>March 2021 - Jan 2025</small>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="pb-2 pb-3">
+                                            <p>Employee of the Month July 2021 &amp; December 2021 for my dedication, organizational skills, and ability to work with a variety of people. I have also been recognized for my ability to work with patients with dementia and other cognitive disorders.</p>
+<p>Departments:</p>
+<ul>
+<li>Culinary</li>
+<li>Reception</li>
+<li>Maintenance</li>
+</ul>
+<p>Tasks:</p>
+<ul>
+<li>Train new employees</li>
+<li>Facilate communication between departments</li>
+<li>Organize and maintain appropriate workspaces</li>
+<li>Assist with patient care and communication</li>
+</ul>
+
+                                        </div>
+                                    </div>
                                 
                             </div>
                         
@@ -940,27 +1176,22 @@ make an impact to allow others to explore it as well.</p>
                                 <div class="py-1">
                                     GPA:
                                     <i>
-                                        <small>3.66 out of 4.0</small>
+                                        <small>3.67 out of 4.0</small>
                                     </i> 
                                 </div>
                                 
                                 <div class="py-1 education-content">
-                                    <p>Currently still enrolled in this program.</p>
-<p>Minor in Electrical Engineering &amp; Statistics.</p>
+                                    <p>Minor in Electrical Engineering</p>
 <p>Extracurricular Activities</p>
 <ul>
 <li>Biomedical Engineering Society Executive Board Secretary</li>
 <li>Research Assistant in Microbiome Metabolic Modeling Lab</li>
+<li>Research Assistant in Glass Brain Lab</li>
+<li>Lab Manager for the Center for Biomedical Innovation</li>
 </ul>
 
                                 </div>
 
-                                
-                                <div class="py-1">
-                                    <a href="https://example.com" class="btn">
-                                        My academic record | Not Yet Available
-                                    </a>
-                                </div>
                                 
                             </div>
                         </div>
@@ -999,23 +1230,18 @@ make an impact to allow others to explore it as well.</p>
                                 <div class="py-1 education-content">
                                     <p>Completed several AP, Dual Credit, &amp; Honors classes.
 Seal of Biliteracy in Spanish</p>
-<p>Completed full Engineering Course Pathway.
-Extracurricular Activities</p>
+<p>Completed full Engineering Course Pathway.</p>
+<p>Extracurricular Activities</p>
 <ul>
 <li>Robotics Club</li>
 <li>Spanish Club</li>
+<li>Color Guard</li>
+<li>Martial Arts (Black Belt)</li>
 <li>Young Hearts 4 Life (<a href="https://www.yh4l.org/">YH4L)</a>) Junior Board</li>
-<li></li>
 </ul>
 
                                 </div>
 
-                                
-                                <div class="py-1">
-                                    <a href="https://example.com" class="btn">
-                                        My academic record | Not Yet Available
-                                    </a>
-                                </div>
                                 
                             </div>
                         </div>
@@ -1097,34 +1323,16 @@ Extracurricular Activities</p>
                 
                 
                 <div class="col-lg-4 col-md-6 my-3">
-                    <a class="card my-3 h-100 p-3" href="https://example.com" title="Google kickstart runner" target="_blank">
+                    <div class="card my-3 h-100 p-3" title="BME Program Award 2026">
                         
                             <div class="card-head">
-                                <img class="card-img-top" src="/images/achievement.jpg">
+                                <img class="card-img-top" src="/images/2026-bme-awards.jpg">
                             </div>
                         
                         <div class="card-body bg-transparent">
-                            <h5 class="card-title bg-transparent">Google kickstart runner</h5>
+                            <h5 class="card-title bg-transparent">BME Program Award 2026</h5>
                             <div class="card-text secondary-font">
-                                I solved all problems with optimal solution.
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                
-                
-                <div class="col-lg-4 col-md-6 my-3">
-                    <div class="card my-3 h-100 p-3" title="Facebook Hackathon Winner">
-                        
-                            <div class="card-head">
-                                <img class="card-img-top" src="/images/achievement.jpg">
-                            </div>
-                        
-                        <div class="card-body bg-transparent">
-                            <h5 class="card-title bg-transparent">Facebook Hackathon Winner</h5>
-                            <div class="card-text secondary-font">
-                                Developed a product using Artificial Intelligence.
+                                For fostering inclusion, excellence, and awareness of all aspects of Biomedical Engineering.
                             </div>
                         </div>
                     </div>
@@ -1133,83 +1341,25 @@ Extracurricular Activities</p>
                 
                 
                 <div class="col-lg-4 col-md-6 my-3">
-                    <a class="card my-3 h-100 p-3" href="https://github.com/gurusabarish/hugo-profile" title="Hugo Profile" target="_blank">
+                    <div class="card my-3 h-100 p-3" title="BME Junior of the Year 2025">
                         
                             <div class="card-head">
-                                <img class="card-img-top" src="/images/achievement.jpg">
+                                <img class="card-img-top" src="/images/2025-bme-awards.jpg">
                             </div>
                         
                         <div class="card-body bg-transparent">
-                            <h5 class="card-title bg-transparent">Hugo Profile</h5>
+                            <h5 class="card-title bg-transparent">BME Junior of the Year 2025</h5>
                             <div class="card-text secondary-font">
-                                Developed a theme and getting 1K&#43; downloads per month.
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                
-                
-                <div class="col-lg-4 col-md-6 my-3">
-                    <div class="card my-3 h-100 p-3" title="Microsoft Imagine Runner">
-                        
-                        <div class="card-body bg-transparent">
-                            <h5 class="card-title bg-transparent">Microsoft Imagine Runner</h5>
-                            <div class="card-text secondary-font">
-                                We are developed a product which can help others.
+                                For excellence in performance and the greatest promise of success.
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                
-                
-                <div class="col-lg-4 col-md-6 my-3">
-                    <a class="card my-3 h-100 p-3" href="https://example.com" title="Google Summer of Code" target="_blank">
-                        
-                        <div class="card-body bg-transparent">
-                            <h5 class="card-title bg-transparent">Google Summer of Code</h5>
-                            <div class="card-text secondary-font">
-                                Contributed to a open source project.
-                            </div>
-                        </div>
-                    </a>
                 </div>
                 
                 
             </div>
         </div>
     </div>
-</section>
-<section id="contact" class="py-5">
-    <div class="container">
-        <h3 class="text-center">Get in Touch</h3>
-        <div class="px-0 px-md-5 px-lg-5">
-            <div class="row justify-content-center px-md-5">
-                <div class="col-md-8 py-3">
-                    <div class="text-center">
-                        
-                    </div>
-                    
-                    <div class="row justify-content-center">
-                        <form id="contact-form" action="https://formspree.io/f/xgvkjyjr" onsubmit="handleFormspreeSubmit(event)" method="POST" class="col-md-7">
-                            <div class="form-group pt-3">
-                                <input type="email" class="form-control"  name="email" required="true" placeholder='Enter your email address'>
-                            </div>
-                            <div class="form-group pt-3">
-                                <textarea class="form-control" name="message" required="true" placeholder='Enter your message here' rows="3"></textarea>
-                            </div>
-                            <div class="form-group text-center pt-3">
-                                <button type="submit" class="btn">Get in Touch</button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="contact-form-status"></div>
 </section>
 
 
@@ -1284,18 +1434,14 @@ Extracurricular Activities</p>
             
                 <div class="pb-2">
                     <a href="http://localhost:1313/" title="Ryan Siegel Profile">
-                        <img alt="Footer logo" src="/fav.png"
-                            height="40px" width="40px">
+                        <img alt="Footer logo" src="/brain.png"
+                            height="40px" width="40px" class="adaptive-icon">
                     </a>
                 </div>
             
             &copy; 2026  All Rights Reserved
             <div class="text-secondary">
                 Made with
-                <span class="text-danger">
-                    &#10084;
-                </span>
-                and
                 <a href="https://github.com/gurusabarish/hugo-profile" target="_blank"
                     title="Designed and developed by gurusabarish">
                     Hugo Profile
@@ -1347,8 +1493,6 @@ Extracurricular Activities</p>
 
 
 
-
-<script src="/js/contact.js"></script>
 
 
 

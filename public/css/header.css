@@ -14,6 +14,10 @@ header .navbar .navbar-nav a {
     color: var(--text-color) !important;
 }
 
+.dark .adaptive-icon {
+    filter: invert(100%) !important;
+}
+
 #theme-toggle {
     background-color: var(--background-color) !important;
     color: var(--text-color) !important;
