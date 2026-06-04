@@ -29,7 +29,7 @@
 {{ template "_internal/twitter_cards.html" . }}
 
 <!-- Multilingual SEO -->
-{{ if site.IsMultilingual }}
+{{ if hugo.IsMultilingual }}
   {{ range .AllTranslations }}
     <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
   {{ end }}
