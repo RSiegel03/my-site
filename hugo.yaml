@@ -33,7 +33,7 @@ Menus:
     - identifier: publications
       name: Publications
       title: Research Publications
-      url: /publications
+      url: /publications/
       weight: 1
     # - identifier: gallery
     #   name: Gallery
