@@ -1,4 +1,4 @@
-baseURL: "https://hugo-profile.netlify.app"
+baseURL: "https://rsiegel.netlify.app/"
 languageCode: "en-us"
 title: "Ryan Siegel Profile"
 theme: hugo-profile
@@ -35,6 +35,11 @@ Menus:
       title: Research Publications
       url: /publications/
       weight: 1
+    - identifier: cv
+      name: CV
+      title: Curriculum Vitae
+      url: /cv/
+      weight: 2
     # - identifier: gallery
     #   name: Gallery
     #   title: Blog posts
@@ -175,11 +180,11 @@ params:
       was when I realized how much our own success relies on others' support and that I never want to stop contributing to this world. 
 
       My choice to pursue Biomedical Engineering (BME) was decided in middle school. It has been what keeps my mom's heart beating with her
-      pacemaker. It was what treated my mom's cancer when I was five. It was the medicine that allowed my mom's patients, veteran's
+      pacemaker. It was what treated my mom's cancer when I was five. It was the medicine that allowed my mom's patients, veterans
       at the VA with traumatic injuries, to live without a limb or survive a TBI. Biomedical Engineering was the field that gave me the flexibility
       to explore my world while helping those around me.   
 
-      Curiousity and kindness drive me to learn. I am currently pursuing a Master's degree in Biomedical Engineering at the University of 
+      Curiosity and kindness drive me to learn. I am currently pursuing a Master's degree in Biomedical Engineering at the University of 
       Vermont, where I am focused on machine learning and computational modeling of microbial interactions. 
       
       I never expected to fall in love with coding & computational work, but the mathematical principles
@@ -262,13 +267,13 @@ params:
               - Design of Lab Website
               - Chapter on Spatio-temporal Modeling of Microbial Interactions
               - (ACTIVE) Hybrid Optimization & Deep Learning approach for predicting single microbe phenotypes. (Masters Project)
-              - (ACTIVE) Python Package with a new method of simulation microbial community growth. Publication in progress.
+              - (ACTIVE) Python Package with a new method of simulating microbial community growth. Publication in progress.
               
               Initial work focused on gaining skills and intuition for the field, while currently I am leveraging these skills to re-think
               metabolic modeling. A soon-to-be-released tool, Greedy Interaction FBA, is a novel method of understanding emergent microbial
               community interactions using an iterative approach. Furthermore, metabolic models are inherently prone to error due to the 
               vastness of the networks, the Master's Project seeks to leverage differentiable optimization with deep learning to learn & 
-              adjust existing models for. 
+              adjust existing models.
 
               Skills & Tools Used:
               - COBRApy
@@ -329,7 +334,7 @@ params:
 
               Tasks:
               - Train new employees
-              - Facilate communication between departments
+              - Facilitate communication between departments
               - Organize and maintain appropriate workspaces
               - Assist with patient care and communication
 
@@ -387,7 +392,7 @@ params:
             - Spanish Club
             - Color Guard
             - Martial Arts (Black Belt)
-            - Young Hearts 4 Life ([YH4L)](https://www.yh4l.org/)) Junior Board 
+            - Young Hearts 4 Life ([YH4L](https://www.yh4l.org/)) Junior Board 
 
         
   # Achievements
@@ -407,23 +412,61 @@ params:
     enable: true
     # title: "Custom Name"
     items:
-      - title: Hugo Profile
-        content: A highly customizable and mobile first Hugo template for personal portfolio and blog.
-        image: /images/projects/profile.png
+      # - title: Hugo Profile
+      #   content: A highly customizable and mobile first Hugo template for personal portfolio and blog.
+      #   image: /images/projects/profile.png
+      #   featured:
+      #     name: Demo
+      #     link: https://hugo-profile.netlify.app
+      #   badges:
+      #     - "Hugo"
+      #     - "Bootstrap"
+      #     - "Javascript"
+      #   links:
+      #     - icon: fa fa-envelope
+      #       url: mailto:?subject=Hugo%20Profile%20Template&body=Check%20it%20out:%20https%3a%2f%2fhugo-profile.netlify.app%2fblog%2fmarkdown-syntax%2f
+      #     - icon: fab fa-github
+      #       url: https://github.com/gurusabarish/hugo-profile
+      #     - icon: fab fa-twitter
+      #       url: https://twitter.com/intent/tweet?text=Check+it+out:&url=https%3A%2F%2Fgithub.com%2Fgurusabarish%2Fhugo-profile
+      - title: Greedy Interaction Flux Balance Analysis (In Progress!)
+        content: A novel method of simulating microbial community growth and interactions. This method is based on the idea of individually optimizing growth of each microbe and iteratively adjusting competition to equal rates.
         featured:
-          name: Demo
-          link: https://hugo-profile.netlify.app
+          name: Pre-Print Coming Soon!
+          link: https://www.biorxiv.org/
+        badges:
+          - "Python"
+          - "Metabolic Modeling"
+          - "Optimization"
+          - "Microbial Interactions"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/m-3-lab/gifba
+
+      - title: FBANet - Differentiable Optimization & Deep Learning for Metabolic Modeling (In Progress!)
+        content: A novel method of learning and adjusting metabolic models using deep learning and differentiable optimization
+        badges:
+          - "Deep Learning"
+          - "Optimization"
+          - "Metabolic Modeling"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/RSiegel03/fbanet
+
+      - title: Personal Website
+        content: This website! I designed and developed this website to share my research, projects, and experiences with the world. I wanted a platform to share my work that was more customizable and personal than other platforms like LinkedIn or ResearchGate. I also wanted to have a blog to share my thoughts and experiences in a more informal way.
+        featured:
+          name: Check it out! (You already are!)
+          link: https://rsiegel.netlify.app
         badges:
           - "Hugo"
           - "Bootstrap"
           - "Javascript"
         links:
-          - icon: fa fa-envelope
-            url: mailto:?subject=Hugo%20Profile%20Template&body=Check%20it%20out:%20https%3a%2f%2fhugo-profile.netlify.app%2fblog%2fmarkdown-syntax%2f
           - icon: fab fa-github
-            url: https://github.com/gurusabarish/hugo-profile
-          - icon: fab fa-twitter
-            url: https://twitter.com/intent/tweet?text=Check+it+out:&url=https%3A%2F%2Fgithub.com%2Fgurusabarish%2Fhugo-profile
+            url: https://github.com/RSiegel03/my-site
+      
+
 
 
   
@@ -451,7 +494,7 @@ params:
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/RSiegel03
-      linkedin: https://linkedin.com
+      linkedin: https://www.linkedin.com/in/ryan-siegel-24b533210
 
 
   # List pages like blogs and posts

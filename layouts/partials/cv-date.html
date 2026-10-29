@@ -1,0 +1,6 @@
+{{- /* Formats a CV date string: "YYYY-MM" -> "Jan 2006", "YYYY" and "Present" as-is. */ -}}
+{{- if findRE `^\d{4}-\d{2}$` . -}}
+{{- (time.AsTime (printf "%s-01" .)).Format "Jan 2006" -}}
+{{- else -}}
+{{- . -}}
+{{- end -}}

@@ -1,0 +1,219 @@
+{{ define "main" }}
+<style>
+    .cv-filters .cv-filter-btn {
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        background-color: transparent;
+        border-radius: 2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.3rem 1rem;
+        margin: 0.25rem;
+        transition: all 0.2s;
+    }
+
+    .cv-filters .cv-filter-btn:hover,
+    .cv-filters .cv-filter-btn.active {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+    }
+
+    .cv-section-title {
+        color: var(--text-color);
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.4rem;
+        font-weight: 600;
+    }
+
+    .cv-entry {
+        background-color: var(--secondary-background-color) !important;
+        border: none;
+        border-left: 4px solid var(--primary-color);
+        border-radius: 0.5rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cv-entry:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+    }
+
+    .cv-date {
+        color: var(--text-secondary-color);
+        font-size: 0.9rem;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .cv-title {
+        color: var(--text-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    .cv-org {
+        color: var(--text-secondary-color);
+        font-style: italic;
+    }
+
+    .cv-details {
+        color: var(--text-color);
+        font-size: 0.95rem;
+    }
+
+    .cv-details p:last-child,
+    .cv-details ul:last-child {
+        margin-bottom: 0;
+    }
+
+    .cv-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 0.1rem 0.6rem;
+        margin-left: 0.25rem;
+        border-radius: 2rem;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        transition: all 0.2s;
+    }
+
+    .cv-tag.active {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+    }
+
+    .cv-hidden {
+        display: none !important;
+    }
+</style>
+
+<section class="py-0 py-sm-5">
+    <div class="container bg-transparent">
+        <h3 class="text-center bg-transparent mb-4">{{ .Title }}</h3>
+
+        <div class="row justify-content-center px-3">
+            <div class="col-sm-12 col-md-12 col-lg-9 content">
+
+                {{ if .Content }}
+                <div class="mb-4 text-center">
+                    {{ .Content }}
+                </div>
+                {{ end }}
+
+                <div class="cv-filters text-center mb-5" role="group" aria-label="Filter CV entries">
+                    <button type="button" class="cv-filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                    {{ range .Params.cvTags }}
+                    <button type="button" class="cv-filter-btn" data-filter="{{ . }}" aria-pressed="false">{{ . }}</button>
+                    {{ end }}
+                </div>
+
+                {{ $pubs := (site.GetPage "/publications").Params.publications }}
+
+                {{ range .Params.sections }}
+                {{ $entries := slice }}
+                {{ if eq .source "publications" }}
+                    {{ range $pubs }}
+                        {{ $authors := replace (replace .authors "R. Siegel" "<strong>R. Siegel</strong>") "Ryan Siegel" "<strong>Ryan Siegel</strong>" }}
+                        {{ $details := $authors }}
+                        {{ with .doi }}
+                            {{ $details = printf "%s<br><a href=\"https://doi.org/%s\" target=\"_blank\" rel=\"noopener noreferrer\">doi:%s</a>" $details . . }}
+                        {{ end }}
+                        {{ $entries = $entries | append (dict "title" .title "org" .journal "date" (string .year) "tags" .cvTags "details" $details "sortKey" (printf "%v-00" .year)) }}
+                    {{ end }}
+                {{ else }}
+                    {{ range .entries }}
+                        {{ $key := .start | default .date | default .end }}
+                        {{ if eq (len $key) 4 }}{{ $key = printf "%s-00" $key }}{{ end }}
+                        {{ $entries = $entries | append (merge . (dict "sortKey" $key)) }}
+                    {{ end }}
+                {{ end }}
+
+                <div class="cv-section mb-5">
+                    <h4 class="cv-section-title mb-4">{{ .title }}</h4>
+
+                    {{ range sort $entries "sortKey" "desc" }}
+                    <div class="card cv-entry mb-3 shadow-sm" data-tags="{{ delimit (.tags | default slice) "|" }}">
+                        <div class="card-body px-4 py-3">
+                            <div class="row">
+                                <div class="col-md-3 cv-date mb-1 mb-md-0">
+                                    {{ if .start }}
+                                        {{ partial "cv-date.html" .start }} – {{ partial "cv-date.html" (.end | default "Present") }}
+                                    {{ else }}
+                                        {{ partial "cv-date.html" (.date | default .end) }}
+                                    {{ end }}
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-start">
+                                        <div class="cv-title me-2">{{ .title }}</div>
+                                        <div class="cv-tags">
+                                            {{ range .tags }}<span class="cv-tag" data-tag="{{ . }}">{{ . }}</span>{{ end }}
+                                        </div>
+                                    </div>
+                                    {{ if .org }}
+                                    <div class="cv-org mb-2">
+                                        {{ if .orgUrl }}<a href="{{ .orgUrl }}" target="_blank" rel="noopener noreferrer">{{ .org }}</a>{{ else }}{{ .org }}{{ end }}
+                                    </div>
+                                    {{ end }}
+                                    {{ with .details }}
+                                    <div class="cv-details">{{ . | markdownify }}</div>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const buttons = document.querySelectorAll('.cv-filter-btn');
+        const entries = document.querySelectorAll('.cv-entry');
+        const sections = document.querySelectorAll('.cv-section');
+        const active = new Set();
+
+        function apply() {
+            buttons.forEach(btn => {
+                const on = btn.dataset.filter === 'all' ? active.size === 0 : active.has(btn.dataset.filter);
+                btn.classList.toggle('active', on);
+                btn.setAttribute('aria-pressed', on);
+            });
+
+            entries.forEach(entry => {
+                const tags = entry.dataset.tags ? entry.dataset.tags.split('|') : [];
+                const match = active.size === 0 || tags.some(t => active.has(t));
+                entry.classList.toggle('cv-hidden', !match);
+                entry.querySelectorAll('.cv-tag').forEach(tag => {
+                    tag.classList.toggle('active', active.has(tag.dataset.tag));
+                });
+            });
+
+            sections.forEach(section => {
+                const visible = section.querySelector('.cv-entry:not(.cv-hidden)');
+                section.classList.toggle('cv-hidden', !visible);
+            });
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const f = btn.dataset.filter;
+                if (f === 'all') {
+                    active.clear();
+                } else if (active.has(f)) {
+                    active.delete(f);
+                } else {
+                    active.add(f);
+                }
+                apply();
+            });
+        });
+    })();
+</script>
+{{ end }}
