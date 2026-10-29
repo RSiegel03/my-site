@@ -442,6 +442,8 @@ params:
         links:
           - icon: fab fa-github
             url: https://github.com/m-3-lab/gifba
+          - icon: fab fa-github
+            url: https://m-3-lab.github.io/giFBA/
 
       - title: FBANet - Differentiable Optimization & Deep Learning for Metabolic Modeling (In Progress!)
         content: A novel method of learning and adjusting metabolic models using deep learning and differentiable optimization
@@ -465,6 +467,15 @@ params:
         links:
           - icon: fab fa-github
             url: https://github.com/RSiegel03/my-site
+
+      - title: Batzoi - Genomic Deep Learning for Bat Gene Expression Prediction
+        content: A genomic deep-learning project, as part of the UVM BME 5990 course, Applied Deep Learning for Biomedical Engineering. This project finetuned the Borzoi model (pretrained on Mouse & Human data) to private Bat genomic data, to predict gene expression (RNA-Seq data) at multiple time points after infection. 
+        badges:
+          - "Genomic Deep Learning"
+          - "PyTorch"
+          - "Grelu"
+          - "U-Net"
+          - "X-AI"
       
 
 
