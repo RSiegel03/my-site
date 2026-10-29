@@ -1,0 +1,543 @@
+{{ define "main" }}
+{{- /* Graph items: projects (hugo.yaml params.projects) and CV entries (content/cv), tagged by badges/topics. */ -}}
+{{- $items := slice -}}
+{{- range site.Params.projects.items -}}
+  {{- $url := "" -}}
+  {{- with .links }}{{ $url = (index . 0).url }}{{ end -}}
+  {{- if and (not $url) .featured }}{{ $url = .featured.link }}{{ end -}}
+  {{- $tags := union (.badges | default slice) (.topics | default slice) -}}
+  {{- $items = $items | append (dict
+      "id" (printf "project-%s" (anchorize .title))
+      "label" .title
+      "group" "project"
+      "kind" "Project"
+      "org" ""
+      "sub" ""
+      "url" ($url | default ("/#projects" | relURL))
+      "external" (ne $url "")
+      "desc" (.content | plainify | truncate 220)
+      "tags" $tags) -}}
+{{- end -}}
+{{- range partial "cv-data.html" . -}}
+  {{- $section := .title -}}
+  {{- $group := cond (in (slice "Publications" "Honors & Awards") $section) "recognition" "experience" -}}
+  {{- range .entries -}}
+    {{- $items = $items | append (dict
+        "id" .id
+        "label" .title
+        "group" $group
+        "kind" $section
+        "org" (.org | default "")
+        "sub" (delimit (slice (.org | default "") .when) " · ")
+        "url" (printf "/cv/#%s" .id | relURL)
+        "external" false
+        "desc" ((.details | default "") | markdownify | plainify | truncate 220)
+        "tags" (.topics | default slice)) -}}
+  {{- end -}}
+{{- end -}}
+
+<style>
+    /* Categorical slots validated all-pairs (CVD + normal vision) on #ffffff and #212529. */
+    .viz-root {
+        --g-surface: var(--secondary-background-color);
+        --g-project: #2a78d6;
+        --g-experience: #eb6834;
+        --g-recognition: #1baf7a;
+        --g-topic: #6c727c;
+        --g-link: #b9bec6;
+        --g-link-hi: #4a5059;
+    }
+
+    html.dark .viz-root {
+        --g-project: #3987e5;
+        --g-experience: #d95926;
+        --g-recognition: #199e70;
+        --g-topic: #a3a9b2;
+        --g-link: #4a5059;
+        --g-link-hi: #c3c7cd;
+    }
+
+    .graph-card {
+        background-color: var(--secondary-background-color) !important;
+        border: none;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .graph-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem 1.25rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary-color);
+        border-bottom: 1px solid var(--g-link);
+    }
+
+    .graph-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        color: var(--text-color);
+    }
+
+    .graph-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .graph-toolbar .form-check-input:checked {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .graph-reset {
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        background: transparent;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+        padding: 0.15rem 0.75rem;
+    }
+
+    .graph-reset:hover {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+    }
+
+    #graph {
+        position: relative;
+        touch-action: none;
+    }
+
+    #graph svg {
+        display: block;
+        width: 100%;
+        cursor: grab;
+    }
+
+    #graph svg:active {
+        cursor: grabbing;
+    }
+
+    .g-node {
+        cursor: pointer;
+        transition: opacity 0.15s;
+    }
+
+    .g-node .g-label {
+        font-size: 12px;
+        fill: var(--text-color);
+        paint-order: stroke;
+        stroke: var(--g-surface);
+        stroke-width: 3px;
+        stroke-linejoin: round;
+        pointer-events: none;
+    }
+
+    .g-node.topic .g-label {
+        fill: var(--text-secondary-color);
+        font-weight: 600;
+    }
+
+    .g-node.item .g-label {
+        display: none;
+    }
+
+    .g-node.item.show-label .g-label {
+        display: block;
+    }
+
+    .g-link {
+        stroke: var(--g-link);
+        stroke-width: 1px;
+        transition: opacity 0.15s;
+    }
+
+    .g-link.hi {
+        stroke: var(--g-link-hi);
+        stroke-width: 2px;
+    }
+
+    .g-dim {
+        opacity: 0.12;
+    }
+
+    .g-tooltip {
+        position: absolute;
+        pointer-events: none;
+        max-width: 260px;
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.4rem;
+        font-size: 0.8rem;
+        line-height: 1.35;
+        background: var(--background-color);
+        color: var(--text-color);
+        box-shadow: 0 .25rem .75rem rgba(0,0,0,.2);
+        opacity: 0;
+        transition: opacity 0.1s;
+        z-index: 2;
+    }
+
+    .g-tooltip .g-tt-sub {
+        color: var(--text-secondary-color);
+    }
+
+    .graph-panel {
+        background-color: var(--secondary-background-color) !important;
+        border: none;
+        border-left: 4px solid var(--primary-color);
+        border-radius: 0.5rem;
+        color: var(--text-color);
+    }
+
+    .graph-panel .g-kind {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--text-secondary-color);
+    }
+
+    .graph-panel .g-sub {
+        color: var(--text-secondary-color);
+        font-style: italic;
+    }
+
+    .g-pill {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 0.05rem 0.55rem;
+        margin: 0.15rem 0.25rem 0 0;
+        border-radius: 2rem;
+        border: 1px solid var(--text-secondary-color);
+        color: var(--text-secondary-color);
+        background: transparent;
+    }
+
+    button.g-pill:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .g-related li {
+        margin-bottom: 0.3rem;
+    }
+
+    .g-related .g-shared {
+        color: var(--text-secondary-color);
+        font-size: 0.85rem;
+    }
+
+    .g-swatch {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .viz-root a {
+        color: var(--primary-color);
+    }
+
+    .topic-table td, .topic-table th {
+        background: transparent !important;
+        color: var(--text-color);
+        border-color: var(--g-link);
+        font-size: 0.9rem;
+    }
+</style>
+
+<section class="py-0 py-sm-5 viz-root">
+    <div class="container bg-transparent">
+        <h3 class="text-center bg-transparent mb-2">{{ .Title }}</h3>
+        {{ with .Content }}<div class="text-center mb-4" style="color: var(--text-secondary-color)">{{ . }}</div>{{ end }}
+
+        <div class="row justify-content-center px-3">
+            <div class="col-12 col-lg-11">
+                <div class="card graph-card shadow-sm mb-3">
+                    <div class="graph-toolbar">
+                        <div class="graph-legend" aria-label="Legend">
+                            <span><svg class="g-swatch" width="14" height="14" viewBox="-7 -7 14 14"><circle r="6" fill="var(--g-project)"/></svg>Projects</span>
+                            <span><svg class="g-swatch" width="14" height="14" viewBox="-7 -7 14 14"><rect x="-5.5" y="-5.5" width="11" height="11" fill="var(--g-experience)"/></svg>Experience &amp; Education</span>
+                            <span><svg class="g-swatch" width="14" height="14" viewBox="-7 -7 14 14"><path d="M0,-6.5L6.5,0L0,6.5L-6.5,0Z" fill="var(--g-recognition)"/></svg>Publications &amp; Awards</span>
+                            <span><svg class="g-swatch" width="14" height="14" viewBox="-7 -7 14 14"><circle r="5" fill="var(--g-surface)" stroke="var(--g-topic)" stroke-width="2"/></svg>Topic</span>
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input" type="checkbox" id="show-all-tags">
+                            <label class="form-check-label" for="show-all-tags">Show single-use tags</label>
+                        </div>
+                        <button type="button" class="graph-reset ms-auto" id="graph-reset">Reset view</button>
+                    </div>
+                    <div id="graph">
+                        <div class="g-tooltip" id="g-tooltip" role="tooltip"></div>
+                    </div>
+                    <div class="px-3 pb-2" style="font-size: 0.8rem; color: var(--text-secondary-color)">
+                        Hover to see connections · click for details · drag to rearrange · ctrl/pinch to zoom
+                    </div>
+                </div>
+
+                <div class="card graph-panel shadow-sm mb-5" id="graph-panel" aria-live="polite">
+                    <div class="card-body px-4 py-3">
+                        <div class="g-kind">Explore</div>
+                        <div>Select a project, experience, or topic in the graph to see what it connects to.</div>
+                    </div>
+                </div>
+
+                <h4 class="mb-3">Browse by topic</h4>
+                <div class="table-responsive mb-5">
+                    <table class="table topic-table">
+                        <thead><tr><th scope="col">Topic</th><th scope="col">Connected</th></tr></thead>
+                        <tbody id="topic-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+    (function () {
+        const ITEMS = {{ $items | jsonify | safeJS }};
+        const cvBase = {{ "/cv/" | relURL }};
+        const GROUP_SHAPE = { project: d3.symbolCircle, experience: d3.symbolSquare, recognition: d3.symbolDiamond };
+        const GROUP_VAR = { project: '--g-project', experience: '--g-experience', recognition: '--g-recognition' };
+
+        const container = document.getElementById('graph');
+        const tooltip = document.getElementById('g-tooltip');
+        const panel = document.getElementById('graph-panel');
+        const showAll = document.getElementById('show-all-tags');
+
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const short = (s, n) => s.length > n ? s.slice(0, n - 1) + '…' : s;
+        const topicId = t => 'topic:' + t;
+
+        // Disambiguate repeated titles (e.g. two "Research Assistant" roles) with the organization.
+        const titleCount = new Map();
+        ITEMS.forEach(it => titleCount.set(it.label, (titleCount.get(it.label) || 0) + 1));
+        ITEMS.forEach(it => {
+            if (titleCount.get(it.label) > 1 && it.org) it.label = `${it.label} (${it.org.split(',')[0]})`;
+        });
+
+        // Count how many items use each tag.
+        const tagCount = new Map();
+        ITEMS.forEach(it => it.tags.forEach(t => tagCount.set(t, (tagCount.get(t) || 0) + 1)));
+
+        function buildGraph() {
+            const minCount = showAll.checked ? 1 : 2;
+            const topics = [...tagCount].filter(([, c]) => c >= minCount).map(([t]) => t);
+            const topicSet = new Set(topics);
+            const links = [];
+            ITEMS.forEach(it => it.tags.forEach(t => {
+                if (topicSet.has(t)) links.push({ source: it.id, target: topicId(t) });
+            }));
+            const linked = new Set(links.map(l => l.source));
+            const nodes = [
+                ...ITEMS.filter(it => linked.has(it.id)).map(it => ({ ...it, type: 'item' })),
+                ...topics.map(t => ({ id: topicId(t), label: t, type: 'topic', count: tagCount.get(t) })),
+            ];
+            return { nodes, links };
+        }
+
+        // Items related to an item, ranked by number of shared tags.
+        function relatedTo(item) {
+            const mine = new Set(item.tags);
+            return ITEMS.filter(o => o.id !== item.id)
+                .map(o => ({ item: o, shared: o.tags.filter(t => mine.has(t)) }))
+                .filter(r => r.shared.length > 0)
+                .sort((a, b) => b.shared.length - a.shared.length || a.item.label.localeCompare(b.item.label));
+        }
+
+        function itemLink(it, text) {
+            const ext = it.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+            return `<a href="${esc(it.url)}"${ext}>${esc(text)}</a>`;
+        }
+
+        let svg, gRoot, nodeSel, linkSel, sim, zoom, adjacency, selected = null;
+
+        function render() {
+            container.querySelectorAll('svg').forEach(s => s.remove());
+            if (sim) sim.stop();
+
+            const { nodes, links } = buildGraph();
+            const width = container.clientWidth;
+            const height = Math.max(420, Math.min(640, width * 0.7));
+
+            adjacency = new Map(nodes.map(n => [n.id, new Set()]));
+            links.forEach(l => {
+                adjacency.get(l.source).add(l.target);
+                adjacency.get(l.target).add(l.source);
+            });
+
+            svg = d3.select(container).append('svg')
+                .attr('viewBox', [-width / 2, -height / 2, width, height])
+                .attr('height', height)
+                .attr('role', 'img')
+                .attr('aria-label', 'Network graph of projects and CV entries linked by shared topics. The same information is in the Browse by topic table below.');
+
+            gRoot = svg.append('g');
+
+            zoom = d3.zoom()
+                .scaleExtent([0.4, 3])
+                .filter(event => event.type === 'wheel' ? event.ctrlKey : !event.button)
+                .on('zoom', event => gRoot.attr('transform', event.transform));
+            svg.call(zoom).on('dblclick.zoom', null);
+            svg.on('click', event => { if (event.target === svg.node()) select(null); });
+
+            linkSel = gRoot.append('g').selectAll('line').data(links).join('line').attr('class', 'g-link');
+
+            nodeSel = gRoot.append('g').selectAll('g').data(nodes, d => d.id).join('g')
+                .attr('class', d => `g-node ${d.type}`)
+                .on('mouseenter', (event, d) => { highlight(d); showTooltip(event, d); })
+                .on('mousemove', (event, d) => showTooltip(event, d))
+                .on('mouseleave', () => { highlight(selected); tooltip.style.opacity = 0; })
+                .on('click', (event, d) => { event.stopPropagation(); select(d); });
+
+            const topicR = d => 5 + Math.sqrt(d.count) * 2.5;
+
+            nodeSel.filter(d => d.type === 'topic').append('circle')
+                .attr('r', topicR)
+                .attr('fill', 'var(--g-surface)')
+                .attr('stroke', 'var(--g-topic)')
+                .attr('stroke-width', 2);
+
+            nodeSel.filter(d => d.type === 'item').append('path')
+                .attr('d', d => d3.symbol(GROUP_SHAPE[d.group], 220)())
+                .attr('fill', d => `var(${GROUP_VAR[d.group]})`)
+                .attr('stroke', 'var(--g-surface)')
+                .attr('stroke-width', 2);
+
+            nodeSel.append('text')
+                .attr('class', 'g-label')
+                .attr('text-anchor', 'middle')
+                .attr('dy', d => d.type === 'topic' ? -topicR(d) - 5 : -12)
+                .text(d => d.type === 'topic' ? d.label : short(d.label, 34));
+
+            nodeSel.call(d3.drag()
+                .on('start', (event, d) => { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+            sim = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links).id(d => d.id).distance(d => 70 + d.target.count * 6).strength(0.5))
+                .force('charge', d3.forceManyBody().strength(d => d.type === 'topic' ? -700 : -260))
+                .force('collide', d3.forceCollide(d => d.type === 'topic' ? topicR(d) + 44 : 18))
+                .force('x', d3.forceX().strength(0.04))
+                .force('y', d3.forceY().strength(0.08))
+                .on('tick', ticked)
+                .stop();
+
+            function ticked() {
+                nodes.forEach(n => {
+                    n.x = Math.max(-width / 2 + 20, Math.min(width / 2 - 20, n.x));
+                    n.y = Math.max(-height / 2 + 24, Math.min(height / 2 - 12, n.y));
+                });
+                linkSel
+                    .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+                nodeSel.attr('transform', d => `translate(${d.x},${d.y})`);
+            }
+
+            // Settle the layout before showing it; dragging restarts the simulation.
+            sim.tick(300);
+            ticked();
+
+            // Keep the current selection if it is still in the graph.
+            if (selected && !adjacency.has(selected.id)) selected = null;
+            if (selected) selected = nodes.find(n => n.id === selected.id);
+            highlight(selected);
+        }
+
+        // Focus a node: its topics (or items) fully visible, items sharing those topics labeled.
+        function highlight(d) {
+            if (!d) {
+                nodeSel.classed('g-dim', false).classed('show-label', false);
+                linkSel.classed('g-dim', false).classed('hi', false);
+                return;
+            }
+            const near = new Set([d.id, ...adjacency.get(d.id)]);
+            const second = new Set(near);
+            if (d.type === 'item') near.forEach(id => adjacency.get(id).forEach(x => second.add(x)));
+            nodeSel
+                .classed('g-dim', n => !second.has(n.id))
+                .classed('show-label', n => n.type === 'item' && second.has(n.id));
+            linkSel
+                .classed('hi', l => l.source.id === d.id || l.target.id === d.id)
+                .classed('g-dim', l => !(near.has(l.source.id) && near.has(l.target.id)) && !(d.type === 'item' && near.has(l.target.id)));
+        }
+
+        function showTooltip(event, d) {
+            const box = container.getBoundingClientRect();
+            tooltip.innerHTML = d.type === 'topic'
+                ? `<strong>${esc(d.label)}</strong><div class="g-tt-sub">${d.count} connected</div>`
+                : `<strong>${esc(d.label)}</strong><div class="g-tt-sub">${esc(d.kind)}${d.sub ? ' · ' + esc(d.sub) : ''}</div>`;
+            let x = event.clientX - box.left + 14;
+            const y = event.clientY - box.top + 14;
+            if (x + 270 > box.width) x = Math.max(8, event.clientX - box.left - 274);
+            tooltip.style.left = x + 'px';
+            tooltip.style.top = y + 'px';
+            tooltip.style.opacity = 1;
+        }
+
+        function select(d) {
+            selected = d;
+            highlight(d);
+            if (!d) {
+                panel.querySelector('.card-body').innerHTML =
+                    '<div class="g-kind">Explore</div><div>Select a project, experience, or topic in the graph to see what it connects to.</div>';
+                return;
+            }
+            let html;
+            if (d.type === 'topic') {
+                const members = ITEMS.filter(it => it.tags.includes(d.label));
+                html = `<div class="g-kind">Topic</div>
+                    <h5 class="mb-2">${esc(d.label)}</h5>
+                    <ul class="g-related mb-2">${members.map(m => `<li>${itemLink(m, m.label)} <span class="g-shared">${esc(m.kind)}</span></li>`).join('')}</ul>
+                    <a href="${cvBase}?topic=${encodeURIComponent(d.label)}">Filter the CV by ${esc(d.label)} &rarr;</a>`;
+            } else {
+                const related = relatedTo(d);
+                html = `<div class="g-kind">${esc(d.kind)}</div>
+                    <h5 class="mb-1">${esc(d.label)}</h5>
+                    ${d.sub ? `<div class="g-sub mb-2">${esc(d.sub)}</div>` : ''}
+                    ${d.desc ? `<p class="mb-2">${esc(d.desc)}</p>` : ''}
+                    <div class="mb-3">${d.tags.map(t => `<button type="button" class="g-pill" data-topic="${esc(t)}">${esc(t)}</button>`).join('')}</div>
+                    ${related.length ? `<div class="g-kind mb-1">Related by shared topics</div>
+                    <ul class="g-related mb-2">${related.slice(0, 8).map(r =>
+                        `<li>${itemLink(r.item, r.item.label)} <span class="g-shared">· ${r.shared.map(esc).join(', ')}</span></li>`).join('')}</ul>` : ''}
+                    ${itemLink(d, d.group === 'project' ? 'View project →' : 'View in CV →')}`;
+            }
+            panel.querySelector('.card-body').innerHTML = html;
+            panel.querySelectorAll('[data-topic]').forEach(btn => btn.addEventListener('click', () => {
+                const node = nodeSel.data().find(n => n.id === topicId(btn.dataset.topic));
+                if (node) select(node);
+            }));
+        }
+
+        function renderTable() {
+            const rows = [...tagCount].filter(([, c]) => c >= 2).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+            document.getElementById('topic-table').innerHTML = rows.map(([t]) => {
+                const members = ITEMS.filter(it => it.tags.includes(t));
+                return `<tr><th scope="row"><a href="${cvBase}?topic=${encodeURIComponent(t)}">${esc(t)}</a></th>
+                    <td>${members.map(m => itemLink(m, m.label)).join(' · ')}</td></tr>`;
+            }).join('');
+        }
+
+        showAll.addEventListener('change', render);
+        document.getElementById('graph-reset').addEventListener('click', () => {
+            select(null);
+            render();
+        });
+
+        let lastWidth = container.clientWidth;
+        window.addEventListener('resize', () => {
+            if (Math.abs(container.clientWidth - lastWidth) > 40) {
+                lastWidth = container.clientWidth;
+                render();
+            }
+        });
+
+        render();
+        renderTable();
+    })();
+</script>
+{{ end }}

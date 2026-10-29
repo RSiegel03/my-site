@@ -40,6 +40,11 @@ Menus:
       title: Curriculum Vitae
       url: /cv/
       weight: 2
+    - identifier: connections
+      name: Connections
+      title: How my work connects
+      url: /connections/
+      weight: 3
     # - identifier: gallery
     #   name: Gallery
     #   title: Blog posts
@@ -410,6 +415,7 @@ params:
   # projects
   projects:
     enable: true
+    # Each project's `badges` and optional `topics` become tags on the Connections graph (/connections/).
     # title: "Custom Name"
     items:
       # - title: Hugo Profile
@@ -439,6 +445,7 @@ params:
           - "Metabolic Modeling"
           - "Optimization"
           - "Microbial Interactions"
+        topics: ["Metabolic Modeling", "Optimization", "Microbial Interactions", "Python"]
         links:
           - icon: fab fa-github
             url: https://github.com/m-3-lab/gifba
@@ -446,7 +453,7 @@ params:
             url: https://m-3-lab.github.io/giFBA/
 
       - title: FBANet - Differentiable Optimization & Deep Learning for Metabolic Modeling (In Progress!)
-        content: A novel method of learning and adjusting metabolic models using deep learning and differentiable optimization
+        content: A novel method of learning and parametrizing metabolic models using deep learning and differentiable optimization
         badges:
           - "Deep Learning"
           - "Optimization"
@@ -454,19 +461,7 @@ params:
         links:
           - icon: fab fa-github
             url: https://github.com/RSiegel03/fbanet
-
-      - title: Personal Website
-        content: This website! I designed and developed this website to share my research, projects, and experiences with the world. I wanted a platform to share my work that was more customizable and personal than other platforms like LinkedIn or ResearchGate. I also wanted to have a blog to share my thoughts and experiences in a more informal way.
-        featured:
-          name: Check it out! (You already are!)
-          link: https://rsiegel.netlify.app
-        badges:
-          - "Hugo"
-          - "Bootstrap"
-          - "Javascript"
-        links:
-          - icon: fab fa-github
-            url: https://github.com/RSiegel03/my-site
+        topics: ["Machine Learning", "Optimization", "Metabolic Modeling", "Python"]
 
       - title: Batzoi - Genomic Deep Learning for Bat Gene Expression Prediction
         content: A genomic deep-learning project, as part of the UVM BME 5990 course, Applied Deep Learning for Biomedical Engineering. This project finetuned the Borzoi model (pretrained on Mouse & Human data) to private Bat genomic data, to predict gene expression (RNA-Seq data) at multiple time points after infection. 
@@ -476,8 +471,29 @@ params:
           - "Grelu"
           - "U-Net"
           - "X-AI"
-      
+        topics: ["Deep Learning", "Machine Learning", "Genomics", "Computer Vision", "Python"]
 
+      - title: Knee MRI Autosegmentation
+        content: An AI/ML project for the UVM CSYS Adv. Machine Learning Course. The team developed a U-Net, a logistic regression model, and a RL-based U-Net model, with the same central objective and the personal goal to understand these tools and explore computer vision. 
+        badges:
+          - "Computer Vision"
+          - "PyTorch"
+          - "Machine Learning"
+          - "U-Net"
+        topics: ["Deep Learning", "Machine Learning", "Computer Vision", "Python"]
+      
+      - title: Personal Website
+        content: This website! I designed and developed this website to share my research, projects, and experiences with the world. I wanted a platform to share my work that was more customizable and personal than other platforms like LinkedIn or ResearchGate. I also wanted to have a blog to share my thoughts and experiences in a more informal way.
+        featured:
+          name: Check it out! (You already are!)
+          link: https://rsiegel.netlify.app
+        badges:
+          - "Hugo"
+          - "Javascript"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/RSiegel03/my-site
+        topics: ["Web Development"]
 
 
   

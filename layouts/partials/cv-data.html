@@ -1,0 +1,38 @@
+{{- /*
+  Returns the CV as a list of sections, each with entries sorted newest-first.
+  Entries get computed fields: "id" (anchor), "when" (display date), "sortKey".
+  Shared by the CV page and the Connections graph.
+*/ -}}
+{{- $sections := slice -}}
+{{- $pubs := (site.GetPage "/publications").Params.publications -}}
+{{- range (site.GetPage "/cv").Params.sections -}}
+  {{- $raw := .entries -}}
+  {{- if eq .source "publications" -}}
+    {{- $raw = slice -}}
+    {{- range $pubs -}}
+      {{- $details := replace (replace .authors "R. Siegel" "<strong>R. Siegel</strong>") "Ryan Siegel" "<strong>Ryan Siegel</strong>" -}}
+      {{- with .doi -}}
+        {{- $details = printf "%s<br><a href=\"https://doi.org/%s\" target=\"_blank\" rel=\"noopener noreferrer\">doi:%s</a>" $details . . -}}
+      {{- end -}}
+      {{- $raw = $raw | append (dict "title" .title "org" .journal "date" (printf "%v" .year) "tags" .cvTags "topics" .topics "details" $details) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $entries := slice -}}
+  {{- range $raw -}}
+    {{- /* Pad year-only dates so all keys share the YYYY-MM form and sort as strings. */ -}}
+    {{- $key := .start | default .date | default .end -}}
+    {{- if eq (len $key) 4 }}{{ $key = printf "%s-00" $key }}{{ end -}}
+    {{- $when := "" -}}
+    {{- if .start -}}
+      {{- $when = printf "%s – %s" (partial "cv-date.html" .start) (partial "cv-date.html" (.end | default "Present")) -}}
+    {{- else -}}
+      {{- $when = partial "cv-date.html" (.date | default .end) -}}
+    {{- end -}}
+    {{- $id := anchorize (printf "%s %s" .title (.org | default "")) -}}
+    {{- $entries = $entries | append (merge . (dict "sortKey" $key "when" (string $when) "id" $id)) -}}
+  {{- end -}}
+
+  {{- $sections = $sections | append (dict "title" .title "entries" (sort $entries "sortKey" "desc")) -}}
+{{- end -}}
+{{- return $sections -}}

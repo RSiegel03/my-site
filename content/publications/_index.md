@@ -9,4 +9,5 @@ publications:
     journal: "bioRxiv"
     doi: 10.64898/2026.04.11.717857
     cvTags: ["M.S."]
+    topics: ["Metabolic Modeling", "Microbial Interactions"]
 ---

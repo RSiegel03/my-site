@@ -3,7 +3,9 @@ title: "Curriculum Vitae"
 draft: false
 layout: "list"
 
-# Tags available for filtering, in the order the filter buttons appear.
+# Level tags available for filtering, in the order the filter buttons appear.
+# Each entry also has `topics` (free-form, e.g. "Machine Learning"); topic filter buttons are built
+# from them automatically, and the Connections graph links entries and projects that share a topic.
 cvTags: ["Highschool", "B.S.", "M.S.", "External"]
 
 # Each section's entries are sorted newest-first by `start` (or `date`), so order here doesn't matter.
@@ -18,6 +20,7 @@ sections:
         start: "2024-01"
         end: "2026-12"
         tags: ["M.S."]
+        topics: ["Machine Learning", "Metabolic Modeling", "Microbial Interactions", "Optimization"]
         details: |
           GPA: 3.73 / 4.0
 
@@ -28,6 +31,7 @@ sections:
         start: "2022-08"
         end: "2025-12"
         tags: ["B.S."]
+        topics: ["Electronics", "Engineering Design", "Leadership"]
         details: |
           GPA: 3.67 / 4.0 · Minor in Electrical Engineering
 
@@ -37,6 +41,7 @@ sections:
         orgUrl: "https://lzhs.lz95.org/"
         end: "2022"
         tags: ["Highschool"]
+        topics: ["Engineering Design", "Robotics", "Leadership", "Community Service"]
         details: |
           GPA: 4.2 / 5.0 · AP, Dual Credit, & Honors coursework · Full Engineering Course Pathway
 
@@ -53,6 +58,7 @@ sections:
         start: "2025-05"
         end: "Present"
         tags: ["B.S.", "M.S."]
+        topics: ["Electronics", "Sensors", "Healthcare"]
         details: |
           - Leading development of the electronic components of a novel multi-sensor system for in-home monitoring of mild cognitive impairment (MCI) in elderly individuals
           - Pilot study compiling wearable and non-wearable sensors for monitoring Activities of Daily Living (ADLs)
@@ -62,6 +68,7 @@ sections:
         start: "2024-08"
         end: "Present"
         tags: ["B.S.", "M.S."]
+        topics: ["Metabolic Modeling", "Microbial Interactions", "Machine Learning", "Deep Learning", "Optimization", "Python", "Web Development"]
         details: |
           - (Active) FBANet: hybrid differentiable optimization & deep learning for predicting single-microbe phenotypes (Master's project)
           - (Active) Greedy Interaction FBA: Python package for simulating microbial community growth; publication in progress
@@ -83,6 +90,7 @@ sections:
         start: "2024-01"
         end: "Present"
         tags: ["B.S.", "M.S."]
+        topics: ["Teaching", "Engineering Design", "Electronics", "Machine Learning"]
         details: |
           - BME 1605: Introduction to BME Design (Spring 2026)
           - EE 2145: Electrical Engineering Concepts (Fall 2025)
@@ -103,6 +111,7 @@ sections:
         start: "2025-01"
         end: "2026-05"
         tags: ["B.S.", "M.S."]
+        topics: ["Leadership", "Teaching", "3D Printing", "Electronics", "Community Service"]
         details: |
           - Managed lab resources, organization, event planning, and communication
           - Consulted on BME Capstone projects based in the lab
@@ -117,6 +126,7 @@ sections:
         start: "2024-05"
         end: "2024-08"
         tags: ["External"]
+        topics: ["Community Service", "Healthcare"]
         details: |
           - Supported individuals of varying ages and cognitive and physical abilities during summer activities
       - title: "Assisted Living Staff"
@@ -125,6 +135,7 @@ sections:
         start: "2021-03"
         end: "2025-01"
         tags: ["External"]
+        topics: ["Healthcare", "Leadership"]
         details: |
           - Culinary, Reception, and Maintenance departments
           - Trained new employees and facilitated communication between departments
@@ -136,20 +147,24 @@ sections:
         org: "University of Vermont"
         date: "2026"
         tags: ["M.S."]
+        topics: ["Leadership", "Community Service"]
         details: For fostering inclusion, excellence, and awareness of all aspects of Biomedical Engineering.
       - title: "BME Junior of the Year"
         org: "University of Vermont"
         date: "2025"
         tags: ["B.S."]
+        topics: ["Engineering Design"]
         details: For excellence in performance and the greatest promise of success.
       - title: "Friendly Face Friday Shoutout"
         org: "Special Recreation Association of Central Lake County"
         orgUrl: "https://www.facebook.com/sraclc.org/posts/pfbid0SkgtXEA4UFCVzCEFurMT22JsPtCh7mie2h4GzQ7eRtpe3tY3RJh7NZQCvyHbe9H9l"
         date: "2024"
         tags: ["External"]
+        topics: ["Community Service"]
       - title: "Employee of the Month (×2)"
         org: "Evolve Senior Living"
         date: "2021-12"
         tags: ["External"]
+        topics: ["Healthcare"]
         details: July 2021 & December 2021
 ---

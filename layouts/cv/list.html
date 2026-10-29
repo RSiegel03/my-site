@@ -84,6 +84,44 @@
         color: var(--background-color);
     }
 
+    .cv-filters .cv-filter-btn-sm {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.75rem;
+    }
+
+    .cv-filter-label {
+        color: var(--text-secondary-color);
+        font-size: 0.85rem;
+        margin-right: 0.25rem;
+    }
+
+    .cv-topic {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 0.05rem 0.55rem;
+        margin: 0.15rem 0.25rem 0 0;
+        border-radius: 2rem;
+        border: 1px solid var(--text-secondary-color);
+        color: var(--text-secondary-color);
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .cv-topic.active {
+        border-color: var(--primary-color);
+        background-color: var(--primary-color);
+        color: var(--background-color);
+    }
+
+    /* Entry linked from the Connections graph (/cv/#id) */
+    .cv-entry {
+        scroll-margin-top: 90px;
+    }
+
+    .cv-entry:target {
+        box-shadow: 0 0 0 3px var(--primary-color) !important;
+    }
+
     .cv-hidden {
         display: none !important;
     }
@@ -102,48 +140,36 @@
                 </div>
                 {{ end }}
 
-                <div class="cv-filters text-center mb-5" role="group" aria-label="Filter CV entries">
-                    <button type="button" class="cv-filter-btn active" data-filter="all" aria-pressed="true">All</button>
-                    {{ range .Params.cvTags }}
-                    <button type="button" class="cv-filter-btn" data-filter="{{ . }}" aria-pressed="false">{{ . }}</button>
-                    {{ end }}
+                {{ $sections := partial "cv-data.html" . }}
+                {{ $topics := slice }}
+                {{ range $sections }}{{ range .entries }}{{ $topics = $topics | append (.topics | default slice) }}{{ end }}{{ end }}
+
+                <div class="cv-filters text-center mb-5">
+                    <div class="mb-2" role="group" aria-label="Filter by level">
+                        <button type="button" class="cv-filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                        {{ range .Params.cvTags }}
+                        <button type="button" class="cv-filter-btn" data-group="level" data-filter="{{ . }}" aria-pressed="false">{{ . }}</button>
+                        {{ end }}
+                    </div>
+                    <div role="group" aria-label="Filter by topic">
+                        <span class="cv-filter-label">Topics:</span>
+                        {{ range sort (uniq $topics) }}
+                        <button type="button" class="cv-filter-btn cv-filter-btn-sm" data-group="topic" data-filter="{{ . }}" aria-pressed="false">{{ . }}</button>
+                        {{ end }}
+                    </div>
                 </div>
 
-                {{ $pubs := (site.GetPage "/publications").Params.publications }}
-
-                {{ range .Params.sections }}
-                {{ $entries := slice }}
-                {{ if eq .source "publications" }}
-                    {{ range $pubs }}
-                        {{ $authors := replace (replace .authors "R. Siegel" "<strong>R. Siegel</strong>") "Ryan Siegel" "<strong>Ryan Siegel</strong>" }}
-                        {{ $details := $authors }}
-                        {{ with .doi }}
-                            {{ $details = printf "%s<br><a href=\"https://doi.org/%s\" target=\"_blank\" rel=\"noopener noreferrer\">doi:%s</a>" $details . . }}
-                        {{ end }}
-                        {{ $entries = $entries | append (dict "title" .title "org" .journal "date" (string .year) "tags" .cvTags "details" $details "sortKey" (printf "%v-00" .year)) }}
-                    {{ end }}
-                {{ else }}
-                    {{ range .entries }}
-                        {{ $key := .start | default .date | default .end }}
-                        {{ if eq (len $key) 4 }}{{ $key = printf "%s-00" $key }}{{ end }}
-                        {{ $entries = $entries | append (merge . (dict "sortKey" $key)) }}
-                    {{ end }}
-                {{ end }}
-
+                {{ range $sections }}
                 <div class="cv-section mb-5">
                     <h4 class="cv-section-title mb-4">{{ .title }}</h4>
 
-                    {{ range sort $entries "sortKey" "desc" }}
-                    <div class="card cv-entry mb-3 shadow-sm" data-tags="{{ delimit (.tags | default slice) "|" }}">
+                    {{ range .entries }}
+                    <div class="card cv-entry mb-3 shadow-sm" id="{{ .id }}"
+                        data-tags="{{ delimit (.tags | default slice) "|" }}"
+                        data-topics="{{ delimit (.topics | default slice) "|" }}">
                         <div class="card-body px-4 py-3">
                             <div class="row">
-                                <div class="col-md-3 cv-date mb-1 mb-md-0">
-                                    {{ if .start }}
-                                        {{ partial "cv-date.html" .start }} – {{ partial "cv-date.html" (.end | default "Present") }}
-                                    {{ else }}
-                                        {{ partial "cv-date.html" (.date | default .end) }}
-                                    {{ end }}
-                                </div>
+                                <div class="col-md-3 cv-date mb-1 mb-md-0">{{ .when }}</div>
                                 <div class="col-md-9">
                                     <div class="d-flex flex-wrap justify-content-between align-items-start">
                                         <div class="cv-title me-2">{{ .title }}</div>
@@ -158,6 +184,11 @@
                                     {{ end }}
                                     {{ with .details }}
                                     <div class="cv-details">{{ . | markdownify }}</div>
+                                    {{ end }}
+                                    {{ with .topics }}
+                                    <div class="cv-topics mt-2">
+                                        {{ range . }}<span class="cv-topic" data-tag="{{ . }}">{{ . }}</span>{{ end }}
+                                    </div>
                                     {{ end }}
                                 </div>
                             </div>
@@ -177,21 +208,28 @@
         const buttons = document.querySelectorAll('.cv-filter-btn');
         const entries = document.querySelectorAll('.cv-entry');
         const sections = document.querySelectorAll('.cv-section');
-        const active = new Set();
+        // Within a group, entries matching any selected tag show; across groups, all groups must match.
+        const active = { level: new Set(), topic: new Set() };
+        const none = () => active.level.size === 0 && active.topic.size === 0;
+        const matches = (set, tags) => set.size === 0 || tags.some(t => set.has(t));
+        const split = s => s ? s.split('|') : [];
 
         function apply() {
             buttons.forEach(btn => {
-                const on = btn.dataset.filter === 'all' ? active.size === 0 : active.has(btn.dataset.filter);
+                const on = btn.dataset.filter === 'all' ? none() : active[btn.dataset.group].has(btn.dataset.filter);
                 btn.classList.toggle('active', on);
                 btn.setAttribute('aria-pressed', on);
             });
 
             entries.forEach(entry => {
-                const tags = entry.dataset.tags ? entry.dataset.tags.split('|') : [];
-                const match = active.size === 0 || tags.some(t => active.has(t));
-                entry.classList.toggle('cv-hidden', !match);
+                const tags = split(entry.dataset.tags);
+                const topics = split(entry.dataset.topics);
+                entry.classList.toggle('cv-hidden', !(matches(active.level, tags) && matches(active.topic, topics)));
                 entry.querySelectorAll('.cv-tag').forEach(tag => {
-                    tag.classList.toggle('active', active.has(tag.dataset.tag));
+                    tag.classList.toggle('active', active.level.has(tag.dataset.tag));
+                });
+                entry.querySelectorAll('.cv-topic').forEach(tag => {
+                    tag.classList.toggle('active', active.topic.has(tag.dataset.tag));
                 });
             });
 
@@ -201,19 +239,31 @@
             });
         }
 
+        function toggle(group, value) {
+            active[group].has(value) ? active[group].delete(value) : active[group].add(value);
+            apply();
+        }
+
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
-                const f = btn.dataset.filter;
-                if (f === 'all') {
-                    active.clear();
-                } else if (active.has(f)) {
-                    active.delete(f);
+                if (btn.dataset.filter === 'all') {
+                    active.level.clear();
+                    active.topic.clear();
+                    apply();
                 } else {
-                    active.add(f);
+                    toggle(btn.dataset.group, btn.dataset.filter);
                 }
-                apply();
             });
         });
+
+        // Clicking a topic pill on an entry filters by that topic.
+        document.querySelectorAll('.cv-topic').forEach(pill => {
+            pill.addEventListener('click', () => toggle('topic', pill.dataset.tag));
+        });
+
+        // ?topic=Name in the URL (used by the Connections graph) preselects a topic.
+        const topic = new URLSearchParams(location.search).get('topic');
+        if ([...buttons].some(btn => btn.dataset.group === 'topic' && btn.dataset.filter === topic)) toggle('topic', topic);
     })();
 </script>
 {{ end }}
